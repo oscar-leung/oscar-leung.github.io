@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Oscar Leung — Software Engineer & QA Automation specialist. Python, Java, JavaScript, Selenium. Bay Area or remote." />
+  <meta name="description" content="Oscar Leung — Software Engineer & QA Automation specialist with 5+ years experience. Python, Java, Selenium, Playwright, Salesforce. Bay Area or remote." />
+  <meta property="og:title" content="Oscar Leung | Software Engineer" />
+  <meta property="og:description" content="5+ years building automation systems & test infrastructure. Python, Java, Selenium, Playwright. Available Bay Area or remote." />
   <title>Oscar Leung | Software Engineer</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,13 +16,13 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#hero" class="nav__logo">OL</a>
+      <a href="#hero" class="nav__logo">OL<span class="nav__logo-dot">.</span></a>
       <ul class="nav__links" id="navLinks">
-        <li><a href="#about" class="nav__link">About</a></li>
-        <li><a href="#skills" class="nav__link">Skills</a></li>
+        <li><a href="#about"    class="nav__link">About</a></li>
+        <li><a href="#skills"   class="nav__link">Skills</a></li>
         <li><a href="#projects" class="nav__link">Projects</a></li>
-        <li><a href="#beyond" class="nav__link">Beyond</a></li>
-        <li><a href="#contact" class="nav__link">Contact</a></li>
+        <li><a href="#beyond"   class="nav__link">Beyond</a></li>
+        <li><a href="#contact"  class="nav__link contact-cta">Hire Me</a></li>
       </ul>
       <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -35,70 +37,109 @@
       <p class="hero__greeting fade-up">Hi, I'm</p>
       <h1 class="hero__name fade-up">Oscar Leung</h1>
       <div class="hero__role fade-up">
-        <span class="hero__role-prefix">I'm a </span>
         <span class="hero__role-typed" id="typedText"></span><span class="hero__cursor">|</span>
       </div>
-      <p class="hero__subtitle fade-up">I write production code, build automation systems, and engineer quality into every layer of the stack — so teams ship fast and sleep well.</p>
+      <p class="hero__subtitle fade-up">
+        5+ years building automation systems, shipping production code, and engineering quality into software —
+        so your team moves fast without breaking things.
+      </p>
       <div class="hero__ctas fade-up">
         <a href="#projects" class="btn btn--primary">See My Work</a>
         <a href="https://www.linkedin.com/in/oscar-leung/" target="_blank" rel="noopener" class="btn btn--outline">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn
         </a>
-        <a href="#contact" class="btn btn--outline">Hire Me</a>
+        <a href="#contact" class="btn btn--ghost">Get In Touch</a>
       </div>
       <div class="hero__available fade-up">
-        <span class="hero__dot"></span> Open to work — Bay Area &amp; Remote
+        <span class="hero__dot"></span>
+        <span>Open to work &mdash; Santa Clara / Bay Area &amp; Remote</span>
       </div>
     </div>
-    <div class="hero__scroll-hint">
+    <div class="hero__scroll-hint" aria-hidden="true">
       <div class="hero__scroll-line"></div>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section class="section about" id="about">
+  <section class="section" id="about">
     <div class="container">
-      <h2 class="section__title fade-in">About Me</h2>
+      <div class="section__header fade-in">
+        <p class="section__eyebrow">Who I Am</p>
+        <h2 class="section__title">About Me</h2>
+      </div>
       <div class="about__grid fade-in">
         <div class="about__text">
           <p>
-            I'm a <strong>Software Engineer</strong> who specializes in automation, test infrastructure,
-            and building tools that make engineering teams faster. I write production Python and Java,
-            design scalable systems, and ship real software — not just test scripts.
+            I'm a <strong>Software Engineer based in Santa Clara, CA</strong> with over
+            <strong>5 years of hands-on experience</strong> in automation engineering, test infrastructure,
+            and full-cycle software development. I write production Python and Java, architect
+            scalable systems, and deliver measurable results — not just coverage numbers.
           </p>
           <p>
-            My edge: I think like a developer <em>and</em> a quality engineer. I've built multi-platform
-            automation systems from scratch, integrated Google Sheets APIs, deployed headless cloud services,
-            and designed Page Object Model frameworks used in real CI/CD pipelines. I care about clean code,
-            good architecture, and results you can measure.
+            My background spans <strong>Salesforce CRM automation</strong>, multi-platform
+            Selenium &amp; Playwright frameworks, Google Cloud infrastructure, and building
+            end-to-end pipelines that teams actually rely on in CI/CD. I'm the engineer who
+            thinks about quality from day one, not as an afterthought.
           </p>
           <p>
-            Seeking <strong>Software Engineer, QA Automation, and SDET</strong> roles in the Bay Area
-            or remote. Fast learner, strong collaborator, and I genuinely love hard problems.
+            I went through <strong>Interview Kickstart</strong> to sharpen my CS fundamentals and
+            system design thinking. I'm a fast learner with a bias for action — I prototype quickly,
+            iterate based on data, and I don't need hand-holding.
           </p>
+          <p>
+            Currently available for <strong>Software Engineer, QA Automation, and SDET</strong> roles
+            in the Bay Area or fully remote. Let's build something reliable together.
+          </p>
+
           <div class="about__badges">
-            <span class="badge">&#10003; Available Now</span>
-            <span class="badge">&#10003; Bay Area / Remote</span>
-            <span class="badge">&#10003; Mid-Level</span>
+            <span class="badge badge--green">&#10003; Available Now</span>
+            <span class="badge badge--green">&#10003; Bay Area &amp; Remote</span>
+            <span class="badge badge--blue">5+ Years Experience</span>
+            <span class="badge badge--blue">Interview Kickstart Grad</span>
           </div>
         </div>
-        <div class="about__stats">
-          <div class="stat-card">
-            <span class="stat-card__num">50+</span>
-            <span class="stat-card__label">Job applications automated per day</span>
+
+        <div class="about__right">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-card__num">5+</span>
+              <span class="stat-card__label">Years of professional experience</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__num">50+</span>
+              <span class="stat-card__label">Job applications automated per day</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__num">4</span>
+              <span class="stat-card__label">Platforms automated end-to-end</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__num">5</span>
+              <span class="stat-card__label">Google Cloud certifications</span>
+            </div>
           </div>
-          <div class="stat-card">
-            <span class="stat-card__num">1000+</span>
-            <span class="stat-card__label">Job listings scraped per run</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__num">4</span>
-            <span class="stat-card__label">Platforms automated end-to-end</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__num">POM</span>
-            <span class="stat-card__label">Architecture used in all projects</span>
+
+          <div class="certs-box">
+            <p class="certs-box__title">Certifications</p>
+            <ul class="certs-list">
+              <li>
+                <span class="cert-icon">&#9729;</span>
+                Google Cloud Infrastructure &times;5 <span class="cert-meta">Coursera, 2020</span>
+              </li>
+              <li>
+                <span class="cert-icon">&#127891;</span>
+                Interview Kickstart <span class="cert-meta">2023–2024</span>
+              </li>
+              <li>
+                <span class="cert-icon">&#9989;</span>
+                Model Validation Expert <span class="cert-meta">Handshake, 2025</span>
+              </li>
+              <li>
+                <span class="cert-icon">&#127919;</span>
+                Goal Setting: OKRs <span class="cert-meta">LinkedIn, 2022</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -106,9 +147,12 @@
   </section>
 
   <!-- SKILLS -->
-  <section class="section skills" id="skills">
+  <section class="section section--alt" id="skills">
     <div class="container">
-      <h2 class="section__title fade-in">Technical Skills</h2>
+      <div class="section__header fade-in">
+        <p class="section__eyebrow">What I Know</p>
+        <h2 class="section__title">Technical Skills</h2>
+      </div>
       <div class="skills__grid fade-in">
 
         <div class="skill-card">
@@ -119,25 +163,26 @@
             <span class="tag">Java</span>
             <span class="tag">JavaScript</span>
             <span class="tag">SQL</span>
-            <span class="tag">Bash</span>
+            <span class="tag">Bash / Shell</span>
           </div>
         </div>
 
         <div class="skill-card">
           <div class="skill-card__icon">&#129514;</div>
-          <h3 class="skill-card__title">Test Frameworks</h3>
+          <h3 class="skill-card__title">Test &amp; Automation</h3>
           <div class="tags">
             <span class="tag">Selenium WebDriver</span>
-            <span class="tag">pytest</span>
-            <span class="tag">JUnit</span>
-            <span class="tag">TestNG</span>
             <span class="tag">Playwright</span>
+            <span class="tag">pytest</span>
+            <span class="tag">JUnit / TestNG</span>
+            <span class="tag">Page Object Model</span>
+            <span class="tag">API Testing</span>
           </div>
         </div>
 
         <div class="skill-card">
           <div class="skill-card__icon">&#9881;</div>
-          <h3 class="skill-card__title">Tools & Platforms</h3>
+          <h3 class="skill-card__title">Tools &amp; Platforms</h3>
           <div class="tags">
             <span class="tag">Git &amp; GitHub</span>
             <span class="tag">GitHub Actions</span>
@@ -145,18 +190,43 @@
             <span class="tag">Docker</span>
             <span class="tag">Postman</span>
             <span class="tag">JIRA</span>
+            <span class="tag">Salesforce</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card__icon">&#9729;</div>
+          <h3 class="skill-card__title">Cloud &amp; Infrastructure</h3>
+          <div class="tags">
+            <span class="tag">Google Cloud Platform</span>
+            <span class="tag">PythonAnywhere</span>
+            <span class="tag">CI/CD Pipelines</span>
+            <span class="tag">Headless Chrome</span>
+            <span class="tag">Google Sheets API</span>
           </div>
         </div>
 
         <div class="skill-card">
           <div class="skill-card__icon">&#128200;</div>
-          <h3 class="skill-card__title">Methodologies</h3>
+          <h3 class="skill-card__title">Methodology</h3>
           <div class="tags">
-            <span class="tag">Page Object Model</span>
-            <span class="tag">CI/CD</span>
             <span class="tag">Agile / Scrum</span>
             <span class="tag">TDD / BDD</span>
-            <span class="tag">API Testing</span>
+            <span class="tag">E2E Testing</span>
+            <span class="tag">Regression Testing</span>
+            <span class="tag">System Design</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card__icon">&#127760;</div>
+          <h3 class="skill-card__title">Soft Skills</h3>
+          <div class="tags">
+            <span class="tag">Cantonese</span>
+            <span class="tag">Spanish</span>
+            <span class="tag">Cross-team collab</span>
+            <span class="tag">Technical writing</span>
+            <span class="tag">Async-first</span>
           </div>
         </div>
 
@@ -165,99 +235,90 @@
   </section>
 
   <!-- PROJECTS -->
-  <section class="section projects" id="projects">
+  <section class="section" id="projects">
     <div class="container">
-      <h2 class="section__title fade-in">Projects</h2>
-      <p class="section__sub fade-in">Selected work — click GitHub links to see the code.</p>
+      <div class="section__header fade-in">
+        <p class="section__eyebrow">What I've Built</p>
+        <h2 class="section__title">Projects</h2>
+      </div>
 
+      <!-- FEATURED -->
+      <div class="featured-project fade-in">
+        <div class="featured-project__content">
+          <p class="featured-project__label">&#11088; Featured Project</p>
+          <h3 class="featured-project__title">Job Hunt Automation Suite</h3>
+          <p class="featured-project__desc">
+            A production-grade automation platform that applies to 50+ jobs per day across
+            LinkedIn, Greenhouse, and Indeed — running 24/7 in the cloud with zero manual
+            intervention. This isn't a toy project: it handles rate-limiting, anti-detection,
+            multi-platform form filling, deduplication across 1,000+ listings per run, and
+            syncs every result to a real-time Google Sheets dashboard via API.
+          </p>
+          <div class="featured-project__bullets">
+            <div class="bullet"><span>&#9654;</span>Scrapes &amp; processes 1,000+ LinkedIn listings per headless run</div>
+            <div class="bullet"><span>&#9654;</span>Autonomous 24/7 deployment on PythonAnywhere cloud</div>
+            <div class="bullet"><span>&#9654;</span>Anti-detection pacing + smart deduplication by URL fingerprint</div>
+            <div class="bullet"><span>&#9654;</span>Google Sheets API integration for real-time application tracking</div>
+            <div class="bullet"><span>&#9654;</span>Modular architecture — each platform is a swappable module</div>
+          </div>
+          <div class="featured-project__tags tags">
+            <span class="tag tag--accent">Python</span>
+            <span class="tag tag--accent">Selenium</span>
+            <span class="tag tag--accent">Google Sheets API</span>
+            <span class="tag tag--accent">PythonAnywhere</span>
+            <span class="tag tag--accent">Headless Chrome</span>
+          </div>
+        </div>
+        <div class="featured-project__links">
+          <a href="https://github.com/oscar-leung/verbose-octo-carnival" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT GRID -->
       <div class="projects__grid fade-in">
 
-        <!-- Featured -->
-        <article class="project-card project-card--featured">
-          <div class="project-card__top">
-            <div class="project-card__label">Featured Project</div>
-            <div class="project-card__links">
-              <a href="https://github.com/oscar-leung/verbose-octo-carnival" target="_blank" rel="noopener" title="GitHub">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-              </a>
-            </div>
+        <article class="project-card">
+          <div class="project-card__head">
+            <span class="project-card__icon">&#128268;</span>
+            <a href="https://github.com/oscar-leung" target="_blank" rel="noopener" class="project-card__gh" title="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
           </div>
-          <h3 class="project-card__title">Job Hunt Automation Suite</h3>
-          <p class="project-card__desc">
-            A production-grade Python + Selenium automation suite that applies to 50+ jobs per day
-            across LinkedIn, Greenhouse, and Indeed — running 24/7 on cloud infrastructure with
-            anti-detection rate limiting, smart form-filling, and real-time Google Sheets tracking.
-          </p>
-          <ul class="project-card__bullets">
-            <li>Scrapes 1,000+ listings per LinkedIn run with deduplication</li>
-            <li>Multi-platform: LinkedIn Easy Apply, Greenhouse, Indeed</li>
-            <li>Headless Chrome on PythonAnywhere — zero manual intervention</li>
-            <li>Google Sheets API dashboard for real-time application tracking</li>
-            <li>Anti-detection pacing to avoid platform rate limits</li>
-          </ul>
+          <h3 class="project-card__title">Salesforce CRM Automation</h3>
+          <p class="project-card__desc">Java + Selenium framework built against Salesforce CRM from scratch using Page Object Model — full separation of concerns, TestNG runner, regression suite covering core CRM workflows.</p>
           <div class="tags">
-            <span class="tag tag--blue">Python</span>
-            <span class="tag tag--blue">Selenium</span>
-            <span class="tag tag--blue">Google Sheets API</span>
-            <span class="tag tag--blue">PythonAnywhere</span>
-            <span class="tag tag--blue">CI/CD</span>
+            <span class="tag">Java</span><span class="tag">Selenium</span><span class="tag">TestNG</span><span class="tag">Salesforce</span><span class="tag">POM</span>
           </div>
         </article>
 
         <article class="project-card">
-          <div class="project-card__top">
-            <div class="project-card__icon">&#128202;</div>
-            <div class="project-card__links">
-              <a href="https://github.com/oscar-leung" target="_blank" rel="noopener" title="GitHub">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-              </a>
-            </div>
+          <div class="project-card__head">
+            <span class="project-card__icon">&#128202;</span>
+            <a href="https://github.com/oscar-leung" target="_blank" rel="noopener" class="project-card__gh" title="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
           </div>
           <h3 class="project-card__title">E2E QA Suite — SauceDemo</h3>
-          <p class="project-card__desc">
-            A professional end-to-end test automation suite for a real e-commerce app, built to
-            demonstrate QA engineering best practices: POM architecture, data-driven testing,
-            and automated failure reporting.
-          </p>
-          <ul class="project-card__bullets">
-            <li>Full coverage: login, cart, checkout, order confirmation flows</li>
-            <li>Page Object Model — maintainable, DRY test code</li>
-            <li>pytest parametrize for data-driven edge case coverage</li>
-            <li>HTML report with screenshots on failure</li>
-          </ul>
+          <p class="project-card__desc">Professional E2E test suite for a real e-commerce app: login, cart, checkout flows covered with pytest, POM architecture, data-driven parametrize, and HTML failure reports with screenshots.</p>
           <div class="tags">
-            <span class="tag tag--blue">Python</span>
-            <span class="tag tag--blue">Selenium</span>
-            <span class="tag tag--blue">pytest</span>
-            <span class="tag tag--blue">POM</span>
+            <span class="tag">Python</span><span class="tag">Selenium</span><span class="tag">pytest</span><span class="tag">POM</span>
           </div>
         </article>
 
         <article class="project-card">
-          <div class="project-card__top">
-            <div class="project-card__icon">&#128268;</div>
-            <div class="project-card__links">
-              <a href="https://github.com/oscar-leung" target="_blank" rel="noopener" title="GitHub">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-              </a>
-            </div>
+          <div class="project-card__head">
+            <span class="project-card__icon">&#9729;</span>
+            <a href="https://github.com/oscar-leung" target="_blank" rel="noopener" class="project-card__gh" title="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
           </div>
-          <h3 class="project-card__title">CRM Automation Framework</h3>
-          <p class="project-card__desc">
-            A Java-based Selenium automation framework built against a CRM application using the
-            Page Object Model pattern — my earliest production-grade QA project that cemented my
-            love for test architecture.
-          </p>
-          <ul class="project-card__bullets">
-            <li>Java + Selenium WebDriver with TestNG runner</li>
-            <li>Page Object Model from scratch — full separation of concerns</li>
-            <li>Automated regression suite for core CRM workflows</li>
-          </ul>
+          <h3 class="project-card__title">Gatsby Cloud CMS Deployments</h3>
+          <p class="project-card__desc">Deployed production sites using Gatsby Cloud with multiple headless CMS integrations: Cosmic, DatoCMS, and Contentful. Demonstrates full-stack web development and deployment pipeline experience.</p>
           <div class="tags">
-            <span class="tag tag--blue">Java</span>
-            <span class="tag tag--blue">Selenium</span>
-            <span class="tag tag--blue">TestNG</span>
-            <span class="tag tag--blue">POM</span>
+            <span class="tag">Gatsby</span><span class="tag">Cosmic CMS</span><span class="tag">Contentful</span><span class="tag">CI/CD</span>
           </div>
         </article>
 
@@ -265,73 +326,109 @@
     </div>
   </section>
 
-  <!-- BEYOND THE CODE -->
-  <section class="section beyond" id="beyond">
+  <!-- BEYOND -->
+  <section class="section section--alt" id="beyond">
     <div class="container">
-      <h2 class="section__title fade-in">Beyond the Code</h2>
-      <p class="section__sub fade-in">A little of what makes me, me — because culture fit matters too.</p>
+      <div class="section__header fade-in">
+        <p class="section__eyebrow">Off the Clock</p>
+        <h2 class="section__title">Beyond the Code</h2>
+      </div>
       <div class="beyond__grid fade-in">
-
         <div class="beyond-card">
           <div class="beyond-card__emoji">&#127257;</div>
           <h3>Ultimate Frisbee</h3>
-          <p>I play ultimate frisbee regularly around the Bay Area. It's taught me to think fast, communicate under pressure, and trust your teammates — skills that translate directly to a good engineering team.</p>
+          <p>I play ultimate around the Bay Area. Fast decision-making, team trust, and competing under pressure — qualities I bring to the engineering floor too.</p>
         </div>
-
         <div class="beyond-card">
           <div class="beyond-card__emoji">&#127921;</div>
           <h3>Board Games</h3>
-          <p>Strategy games are my obsession — from heavy euros to social deduction. I love the puzzle of optimizing under constraints, and I've been known to host game nights for a crowd.</p>
+          <p>Strategy games are my obsession. I love optimization under constraints — whether it's a resource management euro or a social deduction game with 10 people.</p>
         </div>
-
         <div class="beyond-card">
           <div class="beyond-card__emoji">&#128247;</div>
           <h3>Photography</h3>
-          <p>I document life through my lens — from Bay Area adventures and travels across the US to everyday moments with friends and family. I've got 87 GB of memories to prove it.</p>
+          <p>I document everything — Bay Area adventures, road trips to New Orleans, Nashville, Honolulu, and everyday moments with people I care about. 87 GB and counting.</p>
           <a href="https://photos.google.com/u/0/" target="_blank" rel="noopener" class="beyond-card__link">View some shots &rarr;</a>
         </div>
-
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="section contact" id="contact">
+  <section class="section" id="contact">
     <div class="container">
-      <div class="contact__inner fade-in">
+      <div class="contact__wrap fade-in">
         <div class="contact__left">
-          <h2 class="contact__title">Let's Work Together</h2>
-          <p class="contact__desc">
-            I'm actively looking for QA Automation and SDET roles. If you're building something
-            that needs quality built in from day one — let's talk.
+          <div class="section__header">
+            <p class="section__eyebrow">Work With Me</p>
+            <h2 class="section__title">Let's Talk</h2>
+          </div>
+          <p class="contact__pitch">
+            I'm actively interviewing for Software Engineer, QA Automation, and SDET roles.
+            If you're building something that needs reliability, automation, and an engineer who
+            ships — let's have a conversation.
           </p>
+          <ul class="contact__facts">
+            <li><span>&#128205;</span> Santa Clara, CA — open to Bay Area &amp; Remote</li>
+            <li><span>&#9201;</span> Available to start within 2 weeks</li>
+            <li><span>&#128188;</span> Open to contract or full-time</li>
+          </ul>
           <div class="contact__social">
             <a href="https://www.linkedin.com/in/oscar-leung/" target="_blank" rel="noopener" class="social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               linkedin.com/in/oscar-leung
             </a>
             <a href="https://github.com/oscar-leung" target="_blank" rel="noopener" class="social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
               github.com/oscar-leung
             </a>
           </div>
         </div>
+
         <div class="contact__right">
-          <!-- Formspree — sign up at formspree.io, replace YOUR_FORM_ID below -->
-          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" required />
+          <!--
+            Formsubmit.co — no account needed, forwards to Gmail.
+            First submission sends Oscar a one-time activation email.
+            After activating, email is hidden and all future submissions
+            go straight to his inbox. Real address never exposed as a link.
+          -->
+          <form
+            class="contact-form"
+            action="https://formsubmit.co/oscarleung1@gmail.com"
+            method="POST"
+          >
+            <!-- Formsubmit config — disable captcha, set subject, redirect back -->
+            <input type="hidden" name="_captcha"  value="false" />
+            <input type="hidden" name="_subject"  value="Portfolio Contact — New Message" />
+            <input type="hidden" name="_next"     value="https://oscar-leung.github.io/#contact" />
+            <input type="text"   name="_honey"    style="display:none" />
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" placeholder="Your company" />
+              </div>
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="your@company.com" required />
+              <label for="email">Email <span class="required">*</span></label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" required />
             </div>
             <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Tell me about the role or project..." required></textarea>
+              <label for="role">Role / Position</label>
+              <input type="text" id="role" name="role" placeholder="e.g. Senior QA Engineer, SDET, SWE" />
             </div>
-            <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+            <div class="form-group">
+              <label for="message">Message <span class="required">*</span></label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about the role — what you're building, the stack, the team..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full">
+              Send Message &nbsp;&#8594;
+            </button>
+            <p class="form-note">I'll reply within 24 hours. No spam, ever.</p>
           </form>
         </div>
       </div>
@@ -341,8 +438,8 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <p class="footer__copy">&copy; 2026 Oscar Leung &mdash; QA Automation Engineer</p>
-      <nav class="footer__nav">
+      <p class="footer__copy">&copy; 2026 Oscar Leung &mdash; Software Engineer &amp; QA Automation</p>
+      <nav class="footer__nav" aria-label="Footer navigation">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
