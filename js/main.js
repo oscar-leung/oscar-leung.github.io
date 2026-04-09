@@ -1,10 +1,10 @@
 // ===== TYPING EFFECT =====
 const roles = [
+  'Software Engineer',
   'QA Automation Engineer',
   'SDET',
   'Software Engineer in Test',
-  'Test Automation Architect',
-  'Selenium Specialist',
+  'Python Developer',
 ];
 
 let roleIndex = 0;
