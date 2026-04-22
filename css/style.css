@@ -351,6 +351,9 @@ strong { color: var(--text); font-weight: 600; }
 .footer__nav { display: flex; gap: 1.5rem; }
 .footer__nav a { font-size: .8rem; color: var(--text-dim); transition: color var(--t); }
 .footer__nav a:hover { color: var(--accent); }
+.footer__divider { color: var(--border); font-size: .8rem; }
+.footer__alt { color: var(--text-dim) !important; font-size: .78rem; opacity: .7; }
+.footer__alt:hover { color: var(--accent) !important; opacity: 1; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
