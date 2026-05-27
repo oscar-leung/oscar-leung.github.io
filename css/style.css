@@ -785,6 +785,206 @@ html { scrollbar-color: var(--accent) var(--bg); }
   .timeline__dot { left: -1.85rem; }
 }
 
+/* ===== VIBE THEMES ===== */
+/* Default ("cyan") lives in :root. These classes override the accent palette. */
+:root.theme-sunset {
+  --accent:     #fb923c;
+  --accent-2:   #f43f5e;
+  --accent-3:   #fbbf24;
+  --accent-hi:  #fdba74;
+  --accent-lo:  rgba(251,146,60,.08);
+  --border-lit: rgba(251,146,60,.32);
+  --gradient:   linear-gradient(135deg, #fb923c, #f43f5e 55%, #fbbf24);
+}
+:root.theme-forest {
+  --accent:     #4ade80;
+  --accent-2:   #14b8a6;
+  --accent-3:   #84cc16;
+  --accent-hi:  #86efac;
+  --accent-lo:  rgba(74,222,128,.08);
+  --border-lit: rgba(74,222,128,.32);
+  --gradient:   linear-gradient(135deg, #4ade80, #14b8a6 55%, #84cc16);
+}
+:root.theme-neon {
+  --accent:     #f472b6;
+  --accent-2:   #a855f7;
+  --accent-3:   #22d3ee;
+  --accent-hi:  #f9a8d4;
+  --accent-lo:  rgba(244,114,182,.08);
+  --border-lit: rgba(244,114,182,.32);
+  --gradient:   linear-gradient(135deg, #f472b6, #a855f7 55%, #22d3ee);
+}
+
+/* ===== VIBE SWITCHER BUTTON ===== */
+.vibe-switcher {
+  position: fixed;
+  bottom: 1.5rem; right: 1.5rem;
+  z-index: 300;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-lit);
+  color: var(--accent);
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4), 0 0 18px rgba(56,189,248,.22);
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.vibe-switcher:hover {
+  transform: scale(1.08) rotate(18deg);
+  box-shadow: 0 12px 32px rgba(0,0,0,.45), 0 0 26px rgba(56,189,248,.35);
+}
+.vibe-switcher:active { transform: scale(.94); }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  top: 80px; left: 50%;
+  transform: translateX(-50%) translateY(-16px);
+  background: var(--bg-card);
+  border: 1px solid var(--border-lit);
+  color: var(--text);
+  padding: .65rem 1.25rem;
+  border-radius: 100px;
+  font-size: .85rem;
+  font-weight: 500;
+  z-index: 400;
+  box-shadow: 0 12px 32px rgba(0,0,0,.4), 0 0 18px rgba(56,189,248,.22);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+  white-space: nowrap;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== MULTILINGUAL GREETING ===== */
+.hero__greeting {
+  display: inline-block;
+  transition: opacity .35s ease;
+}
+
+/* ===== TILT PREP ===== */
+.project-card, .skill-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ===== MAGNETIC BUTTONS ===== */
+.btn--primary, .nav__link.contact-cta { will-change: transform; }
+
+/* ===== CONFETTI ===== */
+.confetti {
+  position: fixed;
+  width: 8px; height: 14px;
+  pointer-events: none;
+  z-index: 500;
+  border-radius: 2px;
+  animation: confetti-fall var(--dur, 1.6s) cubic-bezier(.2,.5,.4,1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes confetti-fall {
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--tx, 0), var(--ty, 200px)) rotate(var(--rot, 720deg)); opacity: 0; }
+}
+
+/* ===== PARTY MODE (Konami) ===== */
+body.party .hero__name,
+body.party .section__title,
+body.party .featured-project__title,
+body.party .stat-card__num {
+  background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff, #c780ff, #ff6b6b);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-flow 4s linear infinite;
+}
+@keyframes rainbow-flow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+body.party .skill-card__icon,
+body.party .beyond-card__emoji,
+body.party .project-card__icon {
+  animation: party-bounce 1.4s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes party-bounce {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50%      { transform: translateY(-8px) rotate(8deg); }
+}
+
+/* ===== EASTER EGGS ===== */
+/* Hover hint on Beyond cards */
+.beyond-card[data-easter] { cursor: pointer; user-select: none; }
+.beyond-card[data-easter]::before {
+  content: 'click me';
+  position: absolute;
+  top: .55rem; right: .85rem;
+  font-size: .65rem;
+  font-family: var(--mono);
+  color: var(--accent);
+  letter-spacing: .04em;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity var(--t), transform var(--t);
+  z-index: 2;
+}
+.beyond-card[data-easter]:hover::before { opacity: .9; transform: translateY(0); }
+
+/* Frisbee flight */
+.flying-frisbee {
+  position: fixed;
+  z-index: 450;
+  font-size: 2.4rem;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: frisbee-fly 1.8s cubic-bezier(.25,.4,.4,1) forwards;
+}
+@keyframes frisbee-fly {
+  0%   { transform: translate(-50%, -50%) rotate(0deg)    scale(1);  opacity: 1; }
+  50%  { transform: translate(calc(-50% + 40vw), calc(-50% - 140px)) rotate(720deg)  scale(.95); opacity: 1; }
+  100% { transform: translate(calc(-50% + 92vw), calc(-50% + 40px))  rotate(1440deg) scale(.55); opacity: 0; }
+}
+
+/* Dice bounce-in toast */
+.dice-roll {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(.3);
+  z-index: 460;
+  font-size: 5rem;
+  pointer-events: none;
+  filter: drop-shadow(0 0 24px rgba(56,189,248,.55));
+  animation: dice-pop 1.6s cubic-bezier(.34,1.56,.64,1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes dice-pop {
+  0%   { transform: translate(-50%, -50%) scale(.3) rotate(-180deg); opacity: 0; }
+  30%  { transform: translate(-50%, -50%) scale(1.15) rotate(15deg); opacity: 1; }
+  60%  { transform: translate(-50%, -50%) scale(1)    rotate(-5deg); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(.6)   rotate(0deg);  opacity: 0; }
+}
+
+/* Camera flash */
+.camera-flash {
+  position: fixed; inset: 0;
+  background: #fff;
+  pointer-events: none;
+  z-index: 470;
+  opacity: 0;
+  animation: cam-flash .55s ease-out forwards;
+}
+@keyframes cam-flash {
+  0%   { opacity: 0; }
+  10%  { opacity: .85; }
+  100% { opacity: 0; }
+}
+
 /* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
