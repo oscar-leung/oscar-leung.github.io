@@ -95,3 +95,19 @@ const fadeObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 fadeEls.forEach(el => fadeObserver.observe(el));
+
+// ===== SPOTLIGHT HOVER ON CARDS =====
+// Tracks mouse and exposes --mx / --my CSS vars; cards use them in their
+// background-image radial-gradient for a cursor-following glow.
+const spotSelectors = '.skill-card, .project-card, .timeline__content, .beyond-card, .stat-card, .video-card';
+document.querySelectorAll(spotSelectors).forEach(card => {
+  card.addEventListener('pointermove', (e) => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+    card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+  });
+  card.addEventListener('pointerleave', () => {
+    card.style.setProperty('--mx', `-200px`);
+    card.style.setProperty('--my', `-200px`);
+  });
+});
