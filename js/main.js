@@ -99,7 +99,7 @@ fadeEls.forEach(el => fadeObserver.observe(el));
 // ===== SPOTLIGHT HOVER ON CARDS =====
 // Tracks mouse and exposes --mx / --my CSS vars; cards use them in their
 // background-image radial-gradient for a cursor-following glow.
-const spotSelectors = '.skill-card, .project-card, .timeline__content, .beyond-card, .stat-card, .video-card';
+const spotSelectors = '.skill-card, .project-card, .timeline__content, .beyond-card, .stat-card';
 document.querySelectorAll(spotSelectors).forEach(card => {
   card.addEventListener('pointermove', (e) => {
     const rect = card.getBoundingClientRect();
@@ -281,34 +281,126 @@ window.addEventListener('keydown', (e) => {
 });
 
 // ===== BEYOND CARD EASTER EGGS =====
+const polaroidScenes = [
+  { emoji: '🌅', cap: 'golden hour, big sur',
+    bg: 'linear-gradient(180deg, #fbbf24 0%, #f97316 40%, #be123c 75%, #1e1b4b 100%)' },
+  { emoji: '🌃', cap: 'sf skyline at dusk',
+    bg: 'linear-gradient(180deg, #1e1b4b 0%, #4338ca 50%, #7c3aed 100%)' },
+  { emoji: '🏔️', cap: 'tahoe, january',
+    bg: 'linear-gradient(180deg, #93c5fd 0%, #e0f2fe 60%, #f8fafc 100%)' },
+  { emoji: '🌊', cap: 'half moon bay',
+    bg: 'linear-gradient(180deg, #0ea5e9 0%, #0c4a6e 100%)' },
+  { emoji: '🌸', cap: 'kyoto, april',
+    bg: 'linear-gradient(180deg, #fbcfe8 0%, #f472b6 100%)' },
+  { emoji: '🍜', cap: 'late-night ramen run',
+    bg: 'linear-gradient(180deg, #78350f 0%, #fbbf24 100%)' },
+  { emoji: '🥏', cap: 'sunday pickup game',
+    bg: 'linear-gradient(180deg, #84cc16 0%, #14532d 100%)' },
+  { emoji: '🐈', cap: 'caught in 4k',
+    bg: 'linear-gradient(180deg, #fde68a 0%, #f59e0b 100%)' },
+  { emoji: '🌆', cap: 'oakland, blue hour',
+    bg: 'linear-gradient(180deg, #fb923c 0%, #7c3aed 70%, #1e1b4b 100%)' },
+  { emoji: '🎲', cap: 'game night',
+    bg: 'linear-gradient(180deg, #18181b 0%, #3f3f46 100%)' },
+];
+
 document.querySelectorAll('.beyond-card[data-easter]').forEach(card => {
-  card.addEventListener('click', (e) => {
+  card.addEventListener('click', () => {
     const kind = card.dataset.easter;
     const rect = card.getBoundingClientRect();
+
     if (kind === 'frisbee') {
+      // Randomized trajectory — each throw is different.
       const f = document.createElement('div');
       f.className = 'flying-frisbee';
       f.textContent = '🥏';
       f.style.left = `${rect.left + rect.width / 2}px`;
       f.style.top  = `${rect.top  + rect.height / 2}px`;
+
+      const dir   = Math.random() < 0.5 ? -1 : 1;
+      const dist  = (0.55 + Math.random() * 0.45) * window.innerWidth * dir;
+      const arc   = -(120 + Math.random() * 220);
+      const land  = -40 + Math.random() * 160;
+      const spins = (3 + Math.random() * 5) * 360 * (Math.random() < 0.5 ? -1 : 1);
+      const dur   = 1.4 + Math.random() * 0.7;
+
+      f.style.setProperty('--mx',  `${dist * 0.5}px`);
+      f.style.setProperty('--my',  `${arc}px`);
+      f.style.setProperty('--fx',  `${dist}px`);
+      f.style.setProperty('--fy',  `${land}px`);
+      f.style.setProperty('--rot', `${spins}deg`);
+      f.style.setProperty('--dur', `${dur}s`);
+
       document.body.appendChild(f);
-      setTimeout(() => f.remove(), 2000);
+      setTimeout(() => f.remove(), dur * 1000 + 200);
+
     } else if (kind === 'dice') {
+      // Tumbling roll — faces flicker fast and slow to a final result.
       const faces = ['⚀','⚁','⚂','⚃','⚄','⚅'];
-      const roll = Math.floor(Math.random() * 6);
+      const result = Math.floor(Math.random() * 6);
       const d = document.createElement('div');
       d.className = 'dice-roll';
-      d.textContent = faces[roll];
+      d.textContent = faces[Math.floor(Math.random() * 6)];
       document.body.appendChild(d);
-      showToast(`🎲 You rolled a ${roll + 1}`);
-      setTimeout(() => d.remove(), 1700);
+
+      let i = 0;
+      const total = 16;
+      function tumble() {
+        if (i < total) {
+          d.textContent = faces[Math.floor(Math.random() * 6)];
+          i++;
+          setTimeout(tumble, 55 + i * 14);
+        } else {
+          d.textContent = faces[result];
+          showToast(`🎲 You rolled a ${result + 1}!`);
+        }
+      }
+      tumble();
+      setTimeout(() => d.remove(), 2600);
+
     } else if (kind === 'camera') {
+      // Flash, then a polaroid drops in with a random scene.
       const flash = document.createElement('div');
       flash.className = 'camera-flash';
       document.body.appendChild(flash);
-      showToast('📸 *click*');
       setTimeout(() => flash.remove(), 600);
+
+      const scene = polaroidScenes[Math.floor(Math.random() * polaroidScenes.length)];
+      setTimeout(() => {
+        const p = document.createElement('div');
+        p.className = 'polaroid';
+        p.innerHTML =
+          `<div class="polaroid__photo" style="--scene-bg:${scene.bg}">${scene.emoji}</div>` +
+          `<div class="polaroid__caption">${scene.cap} — by oscar</div>`;
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 3300);
+      }, 220);
     }
+  });
+});
+
+// ===== SCROLL PROGRESS BAR =====
+const scrollBar = document.createElement('div');
+scrollBar.className = 'scroll-progress';
+document.body.appendChild(scrollBar);
+window.addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+  scrollBar.style.width = `${pct}%`;
+}, { passive: true });
+
+// ===== CLICK RIPPLE =====
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const r = document.createElement('span');
+    r.className = 'ripple';
+    const size = Math.max(rect.width, rect.height);
+    r.style.width = r.style.height = `${size}px`;
+    r.style.left = `${e.clientX - rect.left - size / 2}px`;
+    r.style.top  = `${e.clientY - rect.top  - size / 2}px`;
+    btn.appendChild(r);
+    setTimeout(() => r.remove(), 700);
   });
 });
 

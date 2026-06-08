@@ -568,72 +568,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .footer__alt { color: var(--text-dim) !important; font-size: .78rem; opacity: .7; }
 .footer__alt:hover { color: var(--accent) !important; opacity: 1; }
 
-/* ===== VIDEOS ===== */
-.videos__intro {
-  text-align: center;
-  color: var(--text-muted);
-  margin-bottom: 2.5rem;
-  font-size: .95rem;
-}
-.link--accent { color: var(--accent); text-decoration: none; }
-.link--accent:hover { text-decoration: underline; }
-.videos__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.75rem;
-  margin-bottom: 2.5rem;
-}
-.video-card {
-  background-color: var(--bg-card);
-  background-image: radial-gradient(420px circle at var(--mx, -200px) var(--my, -200px),
-                    rgba(56,189,248,.12), transparent 45%);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  overflow: hidden;
-  transition: border-color var(--t), box-shadow var(--t), transform var(--t);
-  position: relative;
-}
-.video-card:hover {
-  border-color: var(--border-lit);
-  box-shadow: var(--glow);
-  transform: translateY(-4px);
-}
-.video-card__embed {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-  overflow: hidden;
-  background: #000;
-}
-.video-card__embed iframe {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-.video-card__info { padding: 1rem 1.2rem; }
-.video-card__tag {
-  font-size: .7rem;
-  font-family: var(--mono);
-  color: var(--accent);
-  background: var(--accent-lo);
-  border: 1px solid rgba(56,189,248,.18);
-  padding: .15rem .6rem;
-  border-radius: 4px;
-  display: inline-block;
-  margin-bottom: .5rem;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-}
-.video-card__title {
-  font-size: .9rem;
-  font-weight: 500;
-  color: var(--text);
-  line-height: 1.4;
-}
-.videos__cta { text-align: center; }
-
 /* ===== TIMELINE / EXPERIENCE ===== */
 .timeline {
   position: relative;
@@ -936,38 +870,47 @@ body.party .project-card__icon {
 }
 .beyond-card[data-easter]:hover::before { opacity: .9; transform: translateY(0); }
 
-/* Frisbee flight */
+/* Frisbee flight — endpoints set per-throw via custom properties */
 .flying-frisbee {
   position: fixed;
   z-index: 450;
   font-size: 2.4rem;
   pointer-events: none;
   will-change: transform, opacity;
-  animation: frisbee-fly 1.8s cubic-bezier(.25,.4,.4,1) forwards;
+  animation: frisbee-fly var(--dur, 1.8s) cubic-bezier(.25,.4,.4,1) forwards;
 }
 @keyframes frisbee-fly {
-  0%   { transform: translate(-50%, -50%) rotate(0deg)    scale(1);  opacity: 1; }
-  50%  { transform: translate(calc(-50% + 40vw), calc(-50% - 140px)) rotate(720deg)  scale(.95); opacity: 1; }
-  100% { transform: translate(calc(-50% + 92vw), calc(-50% + 40px))  rotate(1440deg) scale(.55); opacity: 0; }
+  0%   { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
+  50%  {
+    transform: translate(calc(-50% + var(--mx, 40vw)), calc(-50% + var(--my, -160px)))
+               rotate(calc(var(--rot, 1440deg) * 0.5)) scale(.92);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--fx, 92vw)), calc(-50% + var(--fy, 40px)))
+               rotate(var(--rot, 1440deg)) scale(.55);
+    opacity: 0;
+  }
 }
 
-/* Dice bounce-in toast */
+/* Dice tumble — JS swaps faces via textContent during the animation */
 .dice-roll {
   position: fixed;
   top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(.3);
+  transform: translate(-50%, -50%) scale(.2);
   z-index: 460;
-  font-size: 5rem;
+  font-size: 6.5rem;
   pointer-events: none;
-  filter: drop-shadow(0 0 24px rgba(56,189,248,.55));
-  animation: dice-pop 1.6s cubic-bezier(.34,1.56,.64,1) forwards;
+  filter: drop-shadow(0 0 28px rgba(56,189,248,.55));
+  animation: dice-pop 2.6s cubic-bezier(.34,1.4,.64,1) forwards;
   will-change: transform, opacity;
 }
 @keyframes dice-pop {
-  0%   { transform: translate(-50%, -50%) scale(.3) rotate(-180deg); opacity: 0; }
-  30%  { transform: translate(-50%, -50%) scale(1.15) rotate(15deg); opacity: 1; }
-  60%  { transform: translate(-50%, -50%) scale(1)    rotate(-5deg); opacity: 1; }
-  100% { transform: translate(-50%, -50%) scale(.6)   rotate(0deg);  opacity: 0; }
+  0%   { transform: translate(-50%, -50%) scale(.2) rotate(-420deg); opacity: 0; }
+  18%  { transform: translate(-50%, -50%) scale(1.2) rotate(60deg);  opacity: 1; }
+  30%  { transform: translate(-50%, -50%) scale(1) rotate(-12deg);   opacity: 1; }
+  85%  { transform: translate(-50%, -50%) scale(1) rotate(0deg);     opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(.65) rotate(0deg);   opacity: 0; }
 }
 
 /* Camera flash */
@@ -981,8 +924,96 @@ body.party .project-card__icon {
 }
 @keyframes cam-flash {
   0%   { opacity: 0; }
-  10%  { opacity: .85; }
+  10%  { opacity: .9; }
   100% { opacity: 0; }
+}
+
+/* Polaroid that drops after the flash */
+.polaroid {
+  position: fixed;
+  top: 50%; left: 50%;
+  z-index: 460;
+  background: #fafafa;
+  padding: 14px 14px 56px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.55), 0 4px 8px rgba(0,0,0,.25);
+  border-radius: 3px;
+  pointer-events: none;
+  animation: polaroid-drop 3.2s cubic-bezier(.25,.7,.3,1) forwards;
+  will-change: transform, opacity;
+  transform-origin: center;
+}
+.polaroid__photo {
+  width: 220px; height: 220px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5.5rem;
+  background: var(--scene-bg, linear-gradient(135deg, #fbbf24 0%, #f43f5e 45%, #6366f1 100%));
+  position: relative;
+  overflow: hidden;
+}
+.polaroid__photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(transparent 60%, rgba(0,0,0,.18));
+  pointer-events: none;
+}
+.polaroid__caption {
+  position: absolute;
+  bottom: 14px; left: 0; right: 0;
+  text-align: center;
+  font-family: var(--mono);
+  color: #555;
+  font-size: .78rem;
+  font-style: italic;
+  letter-spacing: .02em;
+}
+@keyframes polaroid-drop {
+  0%   { transform: translate(-50%, -240vh) rotate(25deg);          opacity: 0; }
+  18%  { transform: translate(-50%, -50%)   rotate(-12deg) scale(1.04); opacity: 1; }
+  28%  { transform: translate(-50%, -50%)   rotate(-3deg)  scale(1);    opacity: 1; }
+  85%  { transform: translate(-50%, -50%)   rotate(-3deg)  scale(1);    opacity: 1; }
+  100% { transform: translate(-50%, -50%)   rotate(-3deg)  scale(.85);  opacity: 0; }
+}
+
+/* ===== SCROLL PROGRESS BAR ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0;
+  background: var(--gradient);
+  z-index: 250;
+  box-shadow: 0 0 12px rgba(56,189,248,.55);
+  transition: width .08s linear;
+  pointer-events: none;
+}
+
+/* ===== CLICK RIPPLE ===== */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.42);
+  pointer-events: none;
+  transform: scale(0);
+  animation: ripple-anim .65s ease-out forwards;
+  z-index: 0;
+}
+@keyframes ripple-anim {
+  to { transform: scale(2.6); opacity: 0; }
+}
+
+/* ===== HERO NAME GLITCH ON HOVER ===== */
+.hero__name { cursor: default; }
+.hero__name:hover {
+  animation: glitch .42s steps(8) 1, shimmer 7s ease-in-out infinite;
+}
+@keyframes glitch {
+  0%, 100% { transform: none; }
+  15% { transform: translate(-2px, 1px) skewX(-3deg); }
+  30% { transform: translate(2px, -1px) skewX(2deg); }
+  45% { transform: translate(-1px, 2px); }
+  60% { transform: translate(1px, -2px) skewX(-1deg); }
+  75% { transform: translate(-2px, 0); }
+  90% { transform: translate(2px, 1px) skewX(1deg); }
 }
 
 /* ===== REDUCED MOTION ===== */
