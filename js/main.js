@@ -310,24 +310,31 @@ document.querySelectorAll('.beyond-card[data-easter]').forEach(card => {
     const rect = card.getBoundingClientRect();
 
     if (kind === 'frisbee') {
-      // Randomized trajectory — each throw is different.
+      // Randomized flight: any direction, curved mid-path, constant spin.
       const f = document.createElement('div');
       f.className = 'flying-frisbee';
       f.textContent = '🥏';
       f.style.left = `${rect.left + rect.width / 2}px`;
       f.style.top  = `${rect.top  + rect.height / 2}px`;
 
-      const dir   = Math.random() < 0.5 ? -1 : 1;
-      const dist  = (0.55 + Math.random() * 0.45) * window.innerWidth * dir;
-      const arc   = -(120 + Math.random() * 220);
-      const land  = -40 + Math.random() * 160;
-      const spins = (3 + Math.random() * 5) * 360 * (Math.random() < 0.5 ? -1 : 1);
-      const dur   = 1.4 + Math.random() * 0.7;
+      const angle   = Math.random() * Math.PI * 2;
+      const dist    = (0.45 + Math.random() * 0.55) * Math.max(window.innerWidth, window.innerHeight) * 0.85;
+      const fx      = Math.cos(angle) * dist;
+      const fy      = Math.sin(angle) * dist;
+      // Mid-point: half-way along the throw, offset perpendicular for curve + arc up
+      const perp    = (Math.random() - 0.5) * 320;
+      const arc     = -(60 + Math.random() * 220);
+      const mx      = fx / 2 + Math.sin(angle) * -perp;
+      const my      = fy / 2 + Math.cos(angle) *  perp + arc;
+      // Constant spin direction per throw, 3–9 rotations
+      const spinDir = Math.random() < 0.5 ? -1 : 1;
+      const spins   = (3 + Math.random() * 6) * 360 * spinDir;
+      const dur     = 1.4 + Math.random() * 1.0;
 
-      f.style.setProperty('--mx',  `${dist * 0.5}px`);
-      f.style.setProperty('--my',  `${arc}px`);
-      f.style.setProperty('--fx',  `${dist}px`);
-      f.style.setProperty('--fy',  `${land}px`);
+      f.style.setProperty('--mx',  `${mx}px`);
+      f.style.setProperty('--my',  `${my}px`);
+      f.style.setProperty('--fx',  `${fx}px`);
+      f.style.setProperty('--fy',  `${fy}px`);
       f.style.setProperty('--rot', `${spins}deg`);
       f.style.setProperty('--dur', `${dur}s`);
 
@@ -335,28 +342,31 @@ document.querySelectorAll('.beyond-card[data-easter]').forEach(card => {
       setTimeout(() => f.remove(), dur * 1000 + 200);
 
     } else if (kind === 'dice') {
-      // Tumbling roll — faces flicker fast and slow to a final result.
-      const faces = ['⚀','⚁','⚂','⚃','⚄','⚅'];
+      // Dice drops from above, bounces, lands at a random spot on the map.
+      const faces  = ['⚀','⚁','⚂','⚃','⚄','⚅'];
       const result = Math.floor(Math.random() * 6);
       const d = document.createElement('div');
       d.className = 'dice-roll';
+      d.style.left = `${20 + Math.random() * 60}%`;
+      d.style.top  = `${45 + Math.random() * 25}%`;
       d.textContent = faces[Math.floor(Math.random() * 6)];
       document.body.appendChild(d);
 
-      let i = 0;
-      const total = 16;
+      // Tumble through faces, fast at first then slowing to the final roll.
+      let elapsed = 0;
       function tumble() {
-        if (i < total) {
+        if (elapsed < 1700) {
           d.textContent = faces[Math.floor(Math.random() * 6)];
-          i++;
-          setTimeout(tumble, 55 + i * 14);
+          const next = 40 + elapsed / 28;
+          elapsed += next;
+          setTimeout(tumble, next);
         } else {
           d.textContent = faces[result];
           showToast(`🎲 You rolled a ${result + 1}!`);
         }
       }
       tumble();
-      setTimeout(() => d.remove(), 2600);
+      setTimeout(() => d.remove(), 2900);
 
     } else if (kind === 'camera') {
       // Flash, then a polaroid drops in with a random scene.

@@ -206,7 +206,16 @@ html { scrollbar-color: var(--accent) var(--bg); }
 @keyframes blink { 50% { opacity: 0; } }
 .hero__subtitle {
   font-size: 1.05rem; color: var(--text-muted); line-height: 1.75;
-  max-width: 620px; margin: 0 auto 2.25rem;
+  max-width: 620px; margin: 0 auto 1.1rem;
+}
+.hero__tagline {
+  font-family: var(--mono);
+  font-size: .85rem;
+  color: var(--accent-hi);
+  letter-spacing: .01em;
+  margin: 0 auto 2.1rem;
+  max-width: 620px;
+  opacity: .85;
 }
 .hero__ctas { display: flex; gap: .85rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.75rem; }
 .hero__available {
@@ -893,24 +902,31 @@ body.party .project-card__icon {
   }
 }
 
-/* Dice tumble — JS swaps faces via textContent during the animation */
+/* Dice drop: tumbles down from above, bounces twice, settles at JS-set landing spot */
 .dice-roll {
   position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(.2);
   z-index: 460;
-  font-size: 6.5rem;
+  font-size: 5.5rem;
   pointer-events: none;
-  filter: drop-shadow(0 0 28px rgba(56,189,248,.55));
-  animation: dice-pop 2.6s cubic-bezier(.34,1.4,.64,1) forwards;
+  filter:
+    drop-shadow(0 6px 14px rgba(0,0,0,.55))
+    drop-shadow(0 0 22px rgba(56,189,248,.4));
+  animation: dice-drop 2.8s cubic-bezier(.36,.07,.19,.97) forwards;
   will-change: transform, opacity;
+  transform-origin: center;
 }
-@keyframes dice-pop {
-  0%   { transform: translate(-50%, -50%) scale(.2) rotate(-420deg); opacity: 0; }
-  18%  { transform: translate(-50%, -50%) scale(1.2) rotate(60deg);  opacity: 1; }
-  30%  { transform: translate(-50%, -50%) scale(1) rotate(-12deg);   opacity: 1; }
-  85%  { transform: translate(-50%, -50%) scale(1) rotate(0deg);     opacity: 1; }
-  100% { transform: translate(-50%, -50%) scale(.65) rotate(0deg);   opacity: 0; }
+@keyframes dice-drop {
+  0%   { transform: translate(-50%, -120vh) rotate(-45deg); opacity: 0; }
+  6%   { opacity: 1; }
+  22%  { transform: translate(-50%, -50%) rotate(220deg); }                /* impact 1 */
+  30%  { transform: translate(-50%, calc(-50% - 22vh)) rotate(330deg); }   /* bounce 1 */
+  40%  { transform: translate(-50%, -50%) rotate(440deg); }                /* impact 2 */
+  46%  { transform: translate(-50%, calc(-50% - 9vh))  rotate(510deg); }   /* bounce 2 */
+  54%  { transform: translate(-50%, -50%) rotate(570deg); }                /* impact 3 */
+  58%  { transform: translate(-50%, calc(-50% - 3vh))  rotate(595deg); }   /* tiny hop */
+  64%  { transform: translate(-50%, -50%) rotate(610deg); }                /* settle */
+  88%  { transform: translate(-50%, -50%) rotate(610deg); opacity: 1; }
+  100% { transform: translate(-50%, -50%) rotate(610deg); opacity: 0; }
 }
 
 /* Camera flash */
