@@ -323,3 +323,37 @@ console.log(
   'color:#94a3b8;font-family:monospace;font-size:11px;',
   'color:#f472b6;font-size:11px;font-style:italic;'
 );
+
+/* ---------------------------------------------------------------
+   Playful rotating cursor — cycles through emoji for Oscar's
+   hobbies and past jobs (frisbee, volleyball, satellites, testing,
+   AI, teaching). Skipped for users who prefer reduced motion, and
+   reverts to normal over links/buttons so nothing gets harder to click.
+   --------------------------------------------------------------- */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(pointer: coarse)').matches) return; // touch devices have no cursor
+
+  var emojis = ['🥏', '🏐', '🛰️', '🧪', '🤖', '✏️', '🎮'];
+  var i = 0;
+
+  function emojiCursor(e) {
+    var svg =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">' +
+      '<text y="21" font-size="20">' + e + '</text></svg>';
+    return 'url(data:image/svg+xml;utf8,' + encodeURIComponent(svg) + ') 4 4, auto';
+  }
+
+  function rotate() {
+    document.body.style.cursor = emojiCursor(emojis[i]);
+    i = (i + 1) % emojis.length;
+  }
+
+  rotate();
+  setInterval(rotate, 2800);
+
+  // Keep pointer affordance on interactive elements
+  var style = document.createElement('style');
+  style.textContent = 'a, button, [role="button"], input, select, textarea { cursor: pointer !important; }';
+  document.head.appendChild(style);
+})();
