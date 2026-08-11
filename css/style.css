@@ -994,3 +994,54 @@ body.party .project-card__icon {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------- TIMELINE ---------- */
+.timeline__intro {
+  max-width: 640px; margin: 0 auto 3rem; text-align: center;
+  color: var(--text-muted); line-height: 1.7;
+}
+.timeline {
+  position: relative; max-width: 720px; margin: 0 auto;
+  padding-left: 2rem;
+}
+.timeline::before {
+  content: ''; position: absolute; left: .45rem; top: 0; bottom: 0;
+  width: 2px; background: linear-gradient(180deg, var(--border-lit), var(--accent-2), var(--accent-3));
+  opacity: .5;
+}
+.timeline__era { margin: 2.2rem 0 1.4rem; position: relative; }
+.timeline__era-badge {
+  display: inline-block; padding: .4rem .9rem; border-radius: 999px;
+  font-size: .8rem; font-weight: 600; font-family: var(--mono);
+  border: 1px solid var(--border-lit); background: var(--bg-card);
+}
+.timeline__era-badge--hand { color: var(--accent-3); }
+.timeline__era-badge--ai   { color: var(--green); }
+.timeline__item {
+  position: relative; margin-bottom: 1.6rem; padding: 1rem 1.2rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r); transition: border-color var(--t), transform var(--t);
+}
+.timeline__item:hover { border-color: var(--border-lit); transform: translateX(4px); }
+.timeline__item::before {
+  content: ''; position: absolute; left: -1.98rem; top: 1.35rem;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 8px var(--accent);
+}
+.timeline__date {
+  font-family: var(--mono); font-size: .75rem; color: var(--accent-hi);
+  letter-spacing: .05em;
+}
+.timeline__body h3 { margin: .2rem 0 .35rem; font-size: 1.02rem; }
+.timeline__body h3 a { color: var(--text); text-decoration: none; border-bottom: 1px dashed var(--border-lit); }
+.timeline__body h3 a:hover { color: var(--accent-hi); }
+.timeline__body p { color: var(--text-muted); font-size: .9rem; line-height: 1.65; margin: 0; }
+.timeline__body p a { color: var(--accent); text-decoration: none; }
+.timeline__body p a:hover { text-decoration: underline; }
+.timeline__tag {
+  display: inline-block; margin-left: .5rem; padding: .12rem .55rem;
+  font-size: .68rem; font-family: var(--mono); border-radius: 999px;
+  background: var(--accent-lo); color: var(--accent-hi);
+  border: 1px solid var(--border-lit); vertical-align: middle;
+}
+.timeline__tag--hot { color: var(--green); border-color: rgba(74,222,128,.35); background: rgba(74,222,128,.08); }
