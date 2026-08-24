@@ -357,3 +357,108 @@ console.log(
   style.textContent = 'a, button, [role="button"], input, select, textarea { cursor: pointer !important; }';
   document.head.appendChild(style);
 })();
+
+/* ---------------------------------------------------------------
+   SIGNATURE ROTATOR
+   Alternates three sign-off cards on a timer. Pauses while the
+   visitor is hovering, focused inside, or has the tab in the
+   background, so a card never swaps out mid-read. Dots jump
+   directly and stop the auto-advance — an explicit choice wins.
+   --------------------------------------------------------------- */
+(function () {
+  const root = document.getElementById('sigRotator');
+  if (!root) return;
+
+  const slides = Array.from(root.querySelectorAll('.sig__slide'));
+  const dots   = Array.from(root.querySelectorAll('.sig__dot'));
+  if (slides.length < 2) return;
+
+  slides.forEach((sl, i) => { sl.inert = i !== 0; });
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const DWELL   = 7000;
+  let idx = 0, timer = null, paused = false, userPicked = false;
+
+  // Slides are stacked in one grid cell and hidden with `visibility`, not
+  // `hidden`/`display`, so swapping needs no reflow wait — the whole thing is
+  // synchronous. `inert` keeps the offscreen cards out of the tab order
+  // without touching layout.
+  function show(next) {
+    if (next === idx) return;
+    const from = slides[idx];
+    const to   = slides[next];
+
+    from.classList.remove('is-active');
+    from.inert = true;
+    to.classList.add('is-active');
+    to.inert = false;
+
+    dots[idx]?.classList.remove('is-on');
+    dots[next]?.classList.add('is-on');
+    idx = next;
+  }
+
+  function advance() {
+    if (paused || document.hidden) return;
+    show((idx + 1) % slides.length);
+  }
+
+  function start() {
+    stop();
+    if (reduced || userPicked) return;
+    timer = setInterval(advance, DWELL);
+  }
+  function stop() { clearInterval(timer); timer = null; }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      userPicked = true;   // visitor is steering now — stop rotating
+      stop();
+      show(i);
+    });
+  });
+
+  root.addEventListener('mouseenter', () => { paused = true; });
+  root.addEventListener('mouseleave', () => { paused = false; });
+  root.addEventListener('focusin',    () => { paused = true; });
+  root.addEventListener('focusout',   () => { paused = false; });
+  document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+
+  start();
+
+  /* --- Perspective card: tilt toward the pointer --- */
+  const card = document.getElementById('sig3d');
+  if (card && !reduced && !window.matchMedia('(pointer: coarse)').matches) {
+    const REST_X = 8, REST_Y = -14;
+    card.parentElement.addEventListener('mousemove', (e) => {
+      const b = card.getBoundingClientRect();
+      const px = (e.clientX - b.left) / b.width  - .5;
+      const py = (e.clientY - b.top)  / b.height - .5;
+      card.style.setProperty('--rx', (REST_X - py * 16).toFixed(2) + 'deg');
+      card.style.setProperty('--ry', (REST_Y + px * 20).toFixed(2) + 'deg');
+    });
+    card.parentElement.addEventListener('mouseleave', () => {
+      card.style.setProperty('--rx', REST_X + 'deg');
+      card.style.setProperty('--ry', REST_Y + 'deg');
+    });
+  }
+
+  /* --- Etch-a-sketch: shake to redraw the signature --- */
+  const shake = document.getElementById('sketchShake');
+  if (shake) {
+    shake.addEventListener('click', () => {
+      const pad = shake.closest('.sketch');
+      if (!pad || pad.classList.contains('is-shaking')) return;
+      pad.classList.add('is-shaking');
+      // Restart the stroke animation: clear it, force a synchronous reflow,
+      // then hand it back. Doing this without requestAnimationFrame matters —
+      // rAF is frozen in a backgrounded tab, which would strand the signature
+      // mid-reset with no stroke drawn at all.
+      const ink = pad.querySelectorAll('.sketch__ink text');
+      ink.forEach(t => { t.style.animation = 'none'; });
+      void pad.offsetWidth;
+      ink.forEach(t => { t.style.animation = ''; });
+      setTimeout(() => pad.classList.remove('is-shaking'), 460);
+    });
+  }
+})();
