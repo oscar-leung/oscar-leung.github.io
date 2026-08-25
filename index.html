@@ -19,21 +19,64 @@
   <meta name="twitter:title"       content="Oscar Leung | Software Engineer & QA Automation" />
   <meta name="twitter:description" content="5+ years across aerospace, government & consumer tech. Python · Selenium · Playwright · GCP ×5. Available Davis/Sacramento, Bay Area, or remote." />
   <meta name="twitter:image"       content="https://oscar-leung.github.io/og-image.svg" />
+  <link rel="canonical" href="https://oscar-leung.github.io/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070b18'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-size='15' font-weight='bold' fill='%2338bdf8' text-anchor='middle'%3EOL%3C/text%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#070b18" />
   <title>Oscar Leung | Software Engineer</title>
-  <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <noscript><style>.fade-in, .fade-up { opacity: 1 !important; transform: none !important; animation: none !important; }</style></noscript>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Oscar Leung",
+  "url": "https://oscar-leung.github.io/",
+  "jobTitle": "Software Engineer",
+  "description": "Software Engineer specialising in QA automation and SDET work across aerospace, government and consumer tech.",
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "San José State University"
+  },
+  "knowsAbout": [
+    "Software Testing",
+    "Test Automation",
+    "Python",
+    "Java",
+    "Selenium",
+    "Playwright",
+    "Salesforce",
+    "Quality Assurance",
+    "SDET"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Davis",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/oscar-leung/",
+    "https://github.com/oscar-leung"
+  ]
+}
+  </script>
 </head>
 <body>
 
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <!-- NAV -->
-  <nav class="nav" id="nav">
+  <nav class="nav" id="nav" aria-label="Main navigation">
     <div class="nav__inner">
       <a href="#hero" class="nav__logo">OL<span class="nav__logo-dot">.</span></a>
       <ul class="nav__links" id="navLinks">
         <li><a href="#about"      class="nav__link">About</a></li>
-        <li><a href="#experience" class="nav__link">Experience</a></li>
         <li><a href="#skills"     class="nav__link">Skills</a></li>
+        <li><a href="#experience" class="nav__link">Experience</a></li>
         <li><a href="#projects"   class="nav__link">Projects</a></li>
         <li><a href="#timeline"   class="nav__link">Timeline</a></li>
         <li><a href="#videos"     class="nav__link">Videos</a></li>
@@ -41,11 +84,13 @@
         <li><a href="#signature"  class="nav__link">Signature</a></li>
         <li><a href="#contact"    class="nav__link contact-cta">Hire Me</a></li>
       </ul>
-      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
+
+  <main id="main">
 
   <!-- HERO -->
   <section class="hero" id="hero">
@@ -280,6 +325,43 @@
           <div class="timeline__dot"></div>
           <div class="timeline__content">
             <div class="timeline__meta">
+              <span class="timeline__period">Nov 2024 – Jan 2025</span>
+              <span class="timeline__company">Dabba Eats</span>
+            </div>
+            <h3 class="timeline__role">Full Stack Developer</h3>
+            <ul class="timeline__bullets">
+              <li>Built food delivery platform workflows from scratch using Bubble low-code tools</li>
+              <li>Collaborated directly with founders on product design and end-to-end feature implementation</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Bubble</span><span class="tag">Full Stack</span><span class="tag">Product</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <div class="timeline__meta">
+              <span class="timeline__period">Apr – Sep 2024</span>
+              <span class="timeline__company">State of Illinois &middot; via Tequity Partners</span>
+            </div>
+            <h3 class="timeline__role">Software QA Engineer (Remote)</h3>
+            <ul class="timeline__bullets">
+              <li>Automated 300+ test cases across two government Salesforce projects from the ground up</li>
+              <li>JMeter load testing on a financial web platform under high-traffic simulation scenarios</li>
+              <li>Reduced manual QA overhead and accelerated delivery cycles for state-level software</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Salesforce</span><span class="tag">JMeter</span><span class="tag">Selenium</span><span class="tag">Government</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <div class="timeline__meta">
               <span class="timeline__period">Mar – Nov 2023</span>
               <span class="timeline__company">Maxar Technologies</span>
             </div>
@@ -318,25 +400,6 @@
           <div class="timeline__dot"></div>
           <div class="timeline__content">
             <div class="timeline__meta">
-              <span class="timeline__period">Apr – Sep 2024</span>
-              <span class="timeline__company">State of Illinois &middot; via Tequity Partners</span>
-            </div>
-            <h3 class="timeline__role">Software QA Engineer (Remote)</h3>
-            <ul class="timeline__bullets">
-              <li>Automated 300+ test cases across two government Salesforce projects from the ground up</li>
-              <li>JMeter load testing on a financial web platform under high-traffic simulation scenarios</li>
-              <li>Reduced manual QA overhead and accelerated delivery cycles for state-level software</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">Salesforce</span><span class="tag">JMeter</span><span class="tag">Selenium</span><span class="tag">Government</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <div class="timeline__dot"></div>
-          <div class="timeline__content">
-            <div class="timeline__meta">
               <span class="timeline__period">Jun – Nov 2019</span>
               <span class="timeline__company">Location Labs / Avast</span>
             </div>
@@ -348,24 +411,6 @@
             </ul>
             <div class="tags">
               <span class="tag">Espresso</span><span class="tag">Appium</span><span class="tag">Android / iOS</span><span class="tag">JIRA</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <div class="timeline__dot"></div>
-          <div class="timeline__content">
-            <div class="timeline__meta">
-              <span class="timeline__period">Nov 2024 – Jan 2025</span>
-              <span class="timeline__company">Dabba Eats</span>
-            </div>
-            <h3 class="timeline__role">Full Stack Developer</h3>
-            <ul class="timeline__bullets">
-              <li>Built food delivery platform workflows from scratch using Bubble low-code tools</li>
-              <li>Collaborated directly with founders on product design and end-to-end feature implementation</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">Bubble</span><span class="tag">Full Stack</span><span class="tag">Product</span>
             </div>
           </div>
         </div>
@@ -605,9 +650,9 @@
         <div class="video-card">
           <div class="video-card__embed">
             <iframe
-              src="https://www.youtube.com/embed/xIyQ-0j5sdo"
+              src="https://www.youtube-nocookie.com/embed/xIyQ-0j5sdo"
               title="CSS Grid Garden — Levels 1–28"
-              frameborder="0"
+             
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
               loading="lazy">
@@ -623,9 +668,9 @@
         <div class="video-card">
           <div class="video-card__embed">
             <iframe
-              src="https://www.youtube.com/embed/xwipjZKEgc4"
+              src="https://www.youtube-nocookie.com/embed/xwipjZKEgc4"
               title="Flexbox Froggy — Levels 1–24"
-              frameborder="0"
+             
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
               loading="lazy">
@@ -641,9 +686,9 @@
         <div class="video-card">
           <div class="video-card__embed">
             <iframe
-              src="https://www.youtube.com/embed/uNfaoeT7r5A"
+              src="https://www.youtube-nocookie.com/embed/uNfaoeT7r5A"
               title="FreeCodeCamp Responsive Web Design — Basic CSS"
-              frameborder="0"
+             
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
               loading="lazy">
@@ -710,11 +755,11 @@
         <p class="section__sub">Three takes on the same card. It rotates on its own &mdash; or pick one.</p>
       </div>
 
-      <div class="sig" id="sigRotator" aria-roledescription="carousel" aria-label="Email signature designs">
+      <div class="sig" id="sigRotator" role="group" aria-roledescription="carousel" aria-label="Email signature designs">
         <div class="sig__stage">
 
           <!-- ---------- 1. Perspective card ---------- -->
-          <article class="sig__slide is-active" data-sig="3d" aria-label="Perspective signature card">
+          <article class="sig__slide is-active" data-sig="3d" aria-label="Perspective signature card" role="group" aria-roledescription="slide">
             <div class="sig3d" id="sig3d">
               <div class="sig3d__sheet" aria-hidden="true">
                 <span class="sig3d__dot"></span><span class="sig3d__dot"></span><span class="sig3d__dot"></span>
@@ -736,7 +781,7 @@
           </article>
 
           <!-- ---------- 2. Etch-a-sketch ---------- -->
-          <article class="sig__slide" data-sig="sketch" aria-label="Etch-a-sketch signature" inert>
+          <article class="sig__slide" data-sig="sketch" aria-label="Etch-a-sketch signature" role="group" aria-roledescription="slide" inert>
             <div class="sketch">
               <div class="sketch__brand">MAGIC <b>Etch&nbsp;a&nbsp;Sketch</b> SCREEN</div>
               <div class="sketch__screen">
@@ -758,14 +803,14 @@
           </article>
 
           <!-- ---------- 3. Compose-window banner ---------- -->
-          <article class="sig__slide" data-sig="retro" aria-label="Compose window signature" inert>
+          <article class="sig__slide" data-sig="retro" aria-label="Compose window signature" role="group" aria-roledescription="slide" inert>
             <div class="compose">
               <header class="compose__bar">
                 <span>New Message</span>
                 <em aria-hidden="true">&minus; &#9633; &times;</em>
               </header>
-              <div class="compose__field"><label>To</label><span>hiring@your-team.com</span></div>
-              <div class="compose__field"><label>Subject</label><span>Re: Software Engineer / SDET opening</span></div>
+              <div class="compose__field"><span class="compose__label">To</span><span>hiring@your-team.com</span></div>
+              <div class="compose__field"><span class="compose__label">Subject</span><span>Re: Software Engineer / SDET opening</span></div>
               <div class="compose__note">Happy to walk through the Playwright suite whenever it&rsquo;s useful. &mdash; O.</div>
 
               <div class="banner">
@@ -817,7 +862,7 @@
             ships — let's have a conversation.
           </p>
           <ul class="contact__facts">
-            <li><span>&#128205;</span> Bay Area, CA — open to Remote</li>
+            <li><span>&#128205;</span> Davis / Sacramento &middot; Bay Area &middot; Remote</li>
             <li><span>&#9201;</span> Available to start within 2 weeks</li>
             <li><span>&#128188;</span> Open to contract or full-time</li>
           </ul>
@@ -849,7 +894,7 @@
             <input type="hidden" name="_captcha"  value="false" />
             <input type="hidden" name="_subject"  value="Portfolio Contact — New Message" />
             <input type="hidden" name="_next"     value="https://oscar-leung.github.io/#contact" />
-            <input type="text"   name="_honey"    style="display:none" />
+            <input type="text"   name="_honey"    class="visually-hidden" tabindex="-1" autocomplete="off" />
 
             <div class="form-row">
               <div class="form-group">
@@ -882,6 +927,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">

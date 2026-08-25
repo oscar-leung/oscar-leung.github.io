@@ -1,3 +1,12 @@
+/* Set before anything else can throw: css/style.css only hides .fade-in
+   under html.js, so if this file dies the page still renders its content. */
+document.documentElement.classList.add('js');
+
+/* One shared motion flag. The cursor and signature blocks already honoured
+   this; the older code at the top of the file did not. */
+const PREFERS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const POINTER_FINE    = window.matchMedia('(pointer: fine)').matches;
+
 // ===== TYPING EFFECT =====
 const roles = [
   'Software Engineer',
@@ -13,6 +22,8 @@ let isDeleting = false;
 const typedEl = document.getElementById('typedText');
 
 function type() {
+  if (!typedEl) return;
+  if (PREFERS_REDUCED) { typedEl.textContent = roles[0]; return; }
   const current = roles[roleIndex];
   if (isDeleting) {
     typedEl.textContent = current.slice(0, charIndex - 1);
@@ -40,9 +51,11 @@ type();
 
 // ===== NAV SCROLL =====
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-}, { passive: true });
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+}
 
 // ===== ACTIVE NAV LINK =====
 const sections = document.querySelectorAll('section[id]');
@@ -64,18 +77,31 @@ sections.forEach(s => observer.observe(s));
 const hamburger = document.getElementById('hamburger');
 const navLinksEl = document.getElementById('navLinks');
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('open');
-  navLinksEl.classList.toggle('open');
-});
+if (hamburger && navLinksEl) {
+  const syncMenu = (open) => {
+    hamburger.classList.toggle('open', open);
+    navLinksEl.classList.toggle('open', open);
+    // Without this the button announces identically open or closed.
+    hamburger.setAttribute('aria-expanded', String(open));
+  };
 
-// Close menu on link click
-navLinksEl.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    navLinksEl.classList.remove('open');
+  hamburger.addEventListener('click', () => {
+    syncMenu(!navLinksEl.classList.contains('open'));
   });
-});
+
+  // Close menu on link click
+  navLinksEl.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => syncMenu(false));
+  });
+
+  // Escape should close it too, and return focus to the control
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinksEl.classList.contains('open')) {
+      syncMenu(false);
+      hamburger.focus();
+    }
+  });
+}
 
 // ===== FADE-IN ON SCROLL =====
 const fadeEls = document.querySelectorAll('.fade-in');
@@ -100,37 +126,59 @@ fadeEls.forEach(el => fadeObserver.observe(el));
 // Tracks mouse and exposes --mx / --my CSS vars; cards use them in their
 // background-image radial-gradient for a cursor-following glow.
 const spotSelectors = '.skill-card, .project-card, .timeline__content, .beyond-card, .stat-card, .video-card';
-document.querySelectorAll(spotSelectors).forEach(card => {
-  card.addEventListener('pointermove', (e) => {
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-    card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+if (POINTER_FINE) {
+  document.querySelectorAll(spotSelectors).forEach(card => {
+    let frame = null;
+    card.addEventListener('pointermove', (e) => {
+      // Batch to one write per frame — pointermove fires at refresh rate and
+      // each write repaints a 420px gradient.
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+      });
+    });
+    card.addEventListener('pointerleave', () => {
+      if (frame) { cancelAnimationFrame(frame); frame = null; }
+      card.style.setProperty('--mx', `-200px`);
+      card.style.setProperty('--my', `-200px`);
+    });
   });
-  card.addEventListener('pointerleave', () => {
-    card.style.setProperty('--mx', `-200px`);
-    card.style.setProperty('--my', `-200px`);
-  });
-});
+}
 
 // ===== MULTILINGUAL GREETING =====
 // Cycles through Oscar's spoken languages — English, Cantonese, Japanese, Spanish.
-const greetings = ["Hi, I'm", "你好，我係", "こんにちは、僕は", "Hola, soy"];
+// Each greeting carries its own lang tag (WCAG 3.1.2) — without it a screen
+// reader pronounces the Cantonese and Japanese with an English phoneme set.
+const greetings = [
+  { t: "Hi, I'm",        l: 'en'    },
+  { t: '你好，我係',      l: 'zh-HK' },
+  { t: 'こんにちは、僕は', l: 'ja'    },
+  { t: 'Hola, soy',      l: 'es'    },
+];
 const greetEl = document.querySelector('.hero__greeting');
 let gIdx = 0;
 if (greetEl) {
-  setInterval(() => {
-    greetEl.style.opacity = '0';
-    setTimeout(() => {
-      gIdx = (gIdx + 1) % greetings.length;
-      greetEl.textContent = greetings[gIdx];
-      greetEl.style.opacity = '1';
-    }, 350);
-  }, 3500);
+  greetEl.lang = greetings[0].l;
+  if (!PREFERS_REDUCED) {
+    setInterval(() => {
+      greetEl.style.opacity = '0';
+      setTimeout(() => {
+        gIdx = (gIdx + 1) % greetings.length;
+        greetEl.textContent = greetings[gIdx].t;
+        greetEl.lang = greetings[gIdx].l;
+        greetEl.style.opacity = '1';
+      }, 350);
+    }, 3500);
+  }
 }
 
 // ===== STAT COUNT-UP =====
 function animateCount(el, target, duration = 1400) {
   const suffix = el.textContent.replace(/[\d.,\s]/g, '');
+  if (PREFERS_REDUCED) { el.textContent = target + suffix; return; }
   const start = performance.now();
   function step(t) {
     const p = Math.min(1, (t - start) / duration);
@@ -233,6 +281,7 @@ function showToast(msg, duration = 1800) {
     _toastEl.className = 'toast';
     document.body.appendChild(_toastEl);
   }
+  _toastEl.setAttribute('role', 'status');
   _toastEl.textContent = msg;
   _toastEl.classList.add('show');
   clearTimeout(_toastTimer);
@@ -315,7 +364,7 @@ document.querySelectorAll('.beyond-card[data-easter]').forEach(card => {
 // ===== CONSOLE MESSAGE =====
 console.log(
   '%c👋 Hey there, fellow dev!\n' +
-  '%cI\'m Oscar — Software Engineer & QA Automation, available Bay Area or remote.\n' +
+  '%cI\'m Oscar — Software Engineer & QA Automation, available Davis/Sacramento, Bay Area, or remote.\n' +
   '%c\nLinkedIn: linkedin.com/in/oscar-leung\nGitHub:   github.com/oscar-leung' +
   '\n\n%cP.S. Try the Konami code 😉  ↑ ↑ ↓ ↓ ← → ← → B A',
   'color:#38bdf8;font-size:16px;font-weight:bold;',
@@ -331,8 +380,8 @@ console.log(
    reverts to normal over links/buttons so nothing gets harder to click.
    --------------------------------------------------------------- */
 (function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (window.matchMedia('(pointer: coarse)').matches) return; // touch devices have no cursor
+  if (PREFERS_REDUCED) return;
+  if (!POINTER_FINE) return; // touch devices have no cursor
 
   var emojis = ['🥏', '🏐', '🛰️', '🧪', '🤖', '✏️', '🎮'];
   var i = 0;
@@ -354,7 +403,8 @@ console.log(
 
   // Keep pointer affordance on interactive elements
   var style = document.createElement('style');
-  style.textContent = 'a, button, [role="button"], input, select, textarea { cursor: pointer !important; }';
+  style.textContent = 'a, button, [role="button"], select { cursor: pointer !important; }' +
+      ' input:not([type="submit"]):not([type="button"]), textarea { cursor: text !important; }';
   document.head.appendChild(style);
 })();
 
