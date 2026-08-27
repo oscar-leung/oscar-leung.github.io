@@ -244,6 +244,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
               border-color var(--t), box-shadow var(--t);
   border: 2px solid transparent; white-space: nowrap;
   position: relative; overflow: hidden; isolation: isolate;
+  /* <button> otherwise picks up the UA buttonface background and system font,
+     so the same class rendered differently on a button than on a link. */
+  background: transparent; font-family: inherit;
 }
 /* Shine sweep on hover */
 .btn::after {
@@ -1371,3 +1374,107 @@ body.party .project-card__icon {
   transition: transform var(--t);
 }
 .skip-link:focus { transform: translate(-50%, 0); }
+
+/* ============================================================
+   DOCUMENT VIEWER (resume.html)
+   Goal: the document is read here. Saving a copy is available
+   but deliberately demoted — nobody should have to download a
+   PDF to find out what it says.
+   ============================================================ */
+.doc-page { background: var(--bg); }
+
+.doc-head {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(7, 11, 24, .82);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.doc-head__inner {
+  max-width: 1000px; margin: 0 auto;
+  padding: .9rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.doc-back {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-size: .85rem; color: var(--text-muted);
+  transition: color var(--t);
+}
+.doc-back:hover { color: var(--accent); }
+.doc-head__name {
+  font-family: var(--mono); font-size: .78rem;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--text-dim);
+}
+
+.doc-wrap {
+  max-width: 1000px; margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.doc-title { font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 700; line-height: 1.15; }
+.doc-sub { color: var(--text-muted); margin-top: .5rem; max-width: 56ch; }
+
+.doc-switch {
+  display: inline-flex; gap: .35rem;
+  padding: .35rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r); align-self: flex-start;
+}
+.doc-switch__btn {
+  display: flex; flex-direction: column; gap: .15rem;
+  padding: .6rem 1.1rem;
+  border: 0; border-radius: var(--r-sm);
+  background: transparent; color: var(--text-muted);
+  font: 600 .9rem/1.2 var(--font); text-align: left; cursor: pointer;
+  transition: background var(--t), color var(--t);
+}
+.doc-switch__btn:hover { color: var(--text); }
+.doc-switch__btn.is-on { background: var(--bg-card-hi); color: var(--text); box-shadow: inset 0 0 0 1px var(--border-lit); }
+.doc-switch__meta {
+  font: 400 .68rem/1 var(--mono);
+  letter-spacing: .06em; color: var(--text-dim);
+}
+.doc-switch__btn.is-on .doc-switch__meta { color: var(--accent); }
+
+.doc-blurb { color: var(--text-muted); font-size: .92rem; margin-top: -.6rem; }
+.doc-actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+
+.doc-view { border-radius: var(--r); }
+
+/* Live embed — wide screens only */
+.doc-frame {
+  width: 100%; height: min(88vh, 1180px);
+  border: 1px solid var(--border-lit);
+  border-radius: var(--r);
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+  display: block;
+}
+
+/* Preview card — the universal fallback */
+.doc-preview {
+  position: relative;
+  border: 1px solid var(--border-lit);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+  max-height: 78vh;
+}
+.doc-preview img { display: block; width: 100%; height: auto; }
+.doc-preview__veil {
+  position: absolute; inset: auto 0 0 0;
+  display: flex; justify-content: center;
+  padding: 2.5rem 1rem 1.4rem;
+  background: linear-gradient(to top, var(--bg) 30%, rgba(7,11,24,.85) 65%, transparent);
+}
+
+.doc-foot { color: var(--text-muted); font-size: .85rem; }
+.doc-foot a { color: var(--accent); border-bottom: 1px solid transparent; }
+.doc-foot a:hover { border-bottom-color: var(--accent); }
+
+@media (max-width: 560px) {
+  .doc-wrap { padding: 2rem 1.1rem 4rem; }
+  .doc-switch { width: 100%; }
+  .doc-switch__btn { flex: 1; align-items: center; text-align: center; }
+  .doc-actions .btn { flex: 1 1 auto; justify-content: center; }
+}

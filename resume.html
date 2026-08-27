@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Oscar Leung — résumé and full CV. Read them right here, no download needed." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://oscar-leung.github.io/resume.html" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070b18'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-size='15' font-weight='bold' fill='%2338bdf8' text-anchor='middle'%3EOL%3C/text%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#070b18" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://oscar-leung.github.io/resume.html" />
+  <meta property="og:title"       content="Oscar Leung — Résumé & CV" />
+  <meta property="og:description" content="Read Oscar Leung's résumé and full CV in the browser — no download required." />
+
+  <title>Résumé &amp; CV | Oscar Leung</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="doc-page">
+
+  <a href="#docmain" class="skip-link">Skip to content</a>
+
+  <header class="doc-head">
+    <div class="doc-head__inner">
+      <a href="/" class="doc-back">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to portfolio
+      </a>
+      <span class="doc-head__name">Oscar Leung</span>
+    </div>
+  </header>
+
+  <main id="docmain" class="doc-wrap">
+
+    <div class="doc-intro">
+      <h1 class="doc-title">Résumé &amp; CV</h1>
+      <p class="doc-sub">Both are readable right here — nothing to download unless you want to.</p>
+    </div>
+
+    <!-- Document switcher. Real buttons so it works with a keyboard; the URL
+         hash keeps a chosen document linkable. -->
+    <div class="doc-switch" role="tablist" aria-label="Choose a document">
+      <button class="doc-switch__btn is-on" type="button" role="tab" id="tab-resume"
+              aria-selected="true" aria-controls="docpanel" data-doc="resume">
+        Résumé
+        <span class="doc-switch__meta">1 page</span>
+      </button>
+      <button class="doc-switch__btn" type="button" role="tab" id="tab-cv"
+              aria-selected="false" aria-controls="docpanel" data-doc="cv">
+        Full CV
+        <span class="doc-switch__meta">3 pages</span>
+      </button>
+    </div>
+
+    <p class="doc-blurb" id="docBlurb">
+      The one-page version — the fastest read if you're screening.
+    </p>
+
+    <!-- Actions. "Open" and "Print" lead; saving a copy is deliberately last
+         and quiet, because most people just want to read it. -->
+    <div class="doc-actions">
+      <a class="btn btn--primary" id="actOpen" href="resume.pdf" type="application/pdf" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Open full size
+      </a>
+      <button class="btn btn--outline" type="button" id="actPrint">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print
+      </button>
+      <button class="btn btn--ghost" type="button" id="actCopy">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        Copy link
+      </button>
+      <a class="btn btn--ghost" href="/#contact">Get in touch</a>
+    </div>
+
+    <!-- The viewer. No-JS and small screens get the preview card, which always
+         works; wide screens with a fine pointer get upgraded to a live embed,
+         because iOS Safari and Chrome on Android both handle <iframe> PDFs
+         badly (blank frame, or a forced download prompt). -->
+    <section class="doc-view" id="docpanel" role="tabpanel" aria-labelledby="tab-resume" tabindex="0">
+      <div class="doc-preview" id="docPreview">
+        <picture>
+          <source id="prevWebp" srcset="assets/resume-preview.webp" type="image/webp" />
+          <img id="prevImg" src="assets/resume-preview.jpg" alt="First page of Oscar Leung's résumé" loading="lazy" decoding="async" width="1000" height="1295" />
+        </picture>
+        <div class="doc-preview__veil">
+          <a class="btn btn--primary" id="prevOpen" href="resume.pdf" type="application/pdf" target="_blank" rel="noopener">Open the full document</a>
+        </div>
+      </div>
+    </section>
+
+    <p class="doc-foot">
+      Prefer a copy? <a id="actSave" href="resume.pdf" download="Oscar_Leung_Resume.pdf">Save the PDF</a>.
+    </p>
+
+  </main>
+
+  <div class="toast" id="docToast" role="status" aria-live="polite"></div>
+
+  <script>
+  (function () {
+    var DOCS = {
+      resume: {
+        file:  'resume.pdf',
+        save:  'Oscar_Leung_Resume.pdf',
+        prev:  'assets/resume-preview',
+        alt:   "First page of Oscar Leung's résumé",
+        blurb: "The one-page version — the fastest read if you're screening.",
+        label: 'Résumé'
+      },
+      cv: {
+        file:  'cv.pdf',
+        save:  'Oscar_Leung_CV.pdf',
+        prev:  'assets/cv-preview',
+        alt:   "First page of Oscar Leung's full CV",
+        blurb: 'The long version — full history, including the work beyond software.',
+        label: 'Full CV'
+      }
+    };
+
+    var tabs    = Array.prototype.slice.call(document.querySelectorAll('.doc-switch__btn'));
+    var panel   = document.getElementById('docpanel');
+    var preview = document.getElementById('docPreview');
+    var blurb   = document.getElementById('docBlurb');
+    var open    = document.getElementById('actOpen');
+    var prevOpen= document.getElementById('prevOpen');
+    var save    = document.getElementById('actSave');
+    var img     = document.getElementById('prevImg');
+    var webp    = document.getElementById('prevWebp');
+    var toastEl = document.getElementById('docToast');
+
+    // Embed only where PDFs actually render well in a frame.
+    var canEmbed = window.matchMedia('(min-width: 900px)').matches &&
+                   window.matchMedia('(pointer: fine)').matches;
+
+    var current = 'resume';
+    var frame   = null;
+
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toast._t);
+      toast._t = setTimeout(function () { toastEl.classList.remove('show'); }, 2600);
+    }
+
+    function render(key) {
+      var d = DOCS[key];
+      if (!d) return;
+      current = key;
+
+      open.href = d.file;
+      prevOpen.href = d.file;
+      save.href = d.file;
+      save.setAttribute('download', d.save);
+      blurb.textContent = d.blurb;
+      img.src = d.prev + '.jpg';
+      img.alt = d.alt;
+      webp.srcset = d.prev + '.webp';
+
+      tabs.forEach(function (t) {
+        var on = t.dataset.doc === key;
+        t.classList.toggle('is-on', on);
+        t.setAttribute('aria-selected', String(on));
+        if (on) panel.setAttribute('aria-labelledby', t.id);
+      });
+
+      if (canEmbed) {
+        if (!frame) {
+          frame = document.createElement('iframe');
+          frame.className = 'doc-frame';
+          frame.title = 'Document viewer';
+          preview.replaceWith(frame);
+        }
+        // #view forces the built-in viewer rather than a save prompt
+        frame.src = d.file + '#view=FitH';
+      }
+
+      if (history.replaceState) {
+        history.replaceState(null, '', key === 'resume' ? location.pathname : '#cv');
+      }
+      document.title = d.label + ' | Oscar Leung';
+    }
+
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () { render(t.dataset.doc); });
+      // Left/right arrows between tabs, per the tablist pattern
+      t.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        var i = tabs.indexOf(t);
+        var next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        next.focus(); render(next.dataset.doc);
+      });
+    });
+
+    document.getElementById('actPrint').addEventListener('click', function () {
+      // Printing a cross-frame PDF is blocked in most browsers, so hand the
+      // document to a real tab and let the built-in viewer print it.
+      var w = window.open(DOCS[current].file, '_blank', 'noopener');
+      if (w) { toast('Opened in a new tab — use your browser’s print button.'); }
+      else   { toast('Pop-up blocked — open the document, then print.'); }
+    });
+
+    document.getElementById('actCopy').addEventListener('click', function () {
+      var url = location.origin + location.pathname + (current === 'cv' ? '#cv' : '');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(
+          function () { toast('Link copied.'); },
+          function () { toast(url); }
+        );
+      } else { toast(url); }
+    });
+
+    render(location.hash === '#cv' ? 'cv' : 'resume');
+  })();
+  </script>
+</body>
+</html>
