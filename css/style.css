@@ -840,7 +840,9 @@ img[src*="img.shields.io"] {
   }
   .nav__links.open { display: flex; }
   .nav__link { padding: .8rem 2rem; width: 100%; text-align: center; }
-  .nav__link.contact-cta { border: none; border-radius: 0; }
+  /* padding must repeat here: .contact-cta's base padding outweighs the
+     generic .nav__link mobile rule on specificity, leaving a 26px target */
+  .nav__link.contact-cta { border: none; border-radius: 0; padding: .8rem 2rem; }
   .nav__hamburger { display: flex; }
   .form-row { grid-template-columns: 1fr; }
   .footer .container { flex-direction: column; text-align: center; }
