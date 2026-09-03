@@ -390,6 +390,23 @@ document.querySelectorAll('.beyond-card[data-easter]').forEach(card => {
   });
 });
 
+// ===== YOUTUBE FACADES =====
+// The three embeds cost ~500KB+ each before anyone presses play. The cards
+// ship a thumbnail-only <button>; the real player is built on demand.
+document.querySelectorAll('.video-facade').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.videoId;
+    if (!id) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1`;
+    iframe.title = btn.dataset.videoTitle || 'YouTube video';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    btn.replaceWith(iframe);
+    iframe.focus();
+  });
+});
+
 // ===== CONSOLE MESSAGE =====
 console.log(
   '%c👋 Hey there, fellow dev!\n' +
