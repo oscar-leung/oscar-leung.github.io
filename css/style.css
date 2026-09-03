@@ -210,7 +210,12 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: 1.05rem; color: var(--text-muted); line-height: 1.75;
   max-width: 620px; margin: 0 auto 2.25rem;
 }
-.hero__ctas { display: flex; gap: .85rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.75rem; }
+/* Three actions: one filled primary, outline + ghost as secondaries.
+   Slightly larger than base .btn so the trimmed-down row doesn't look
+   sparse at desktop widths, and every target clears 44px (WCAG 2.5.5). */
+.hero__ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.hero__ctas .btn { padding: .85rem 1.9rem; font-size: .92rem; min-height: 44px; }
+.hero__ctas .btn--ghost { color: var(--text); }
 .hero__available {
   display: inline-flex; align-items: center; gap: .55rem;
   font-size: .82rem; color: var(--text-muted);
@@ -559,6 +564,15 @@ html.js .fade-in.visible { opacity: 1; transform: none; }
 }
 .form-group input::placeholder,
 .form-group textarea::placeholder { color: var(--text-dim); }
+/* Inline validation — :user-invalid only fires after the visitor has
+   interacted with the field, so nothing screams red on page load. */
+.form-group input:user-invalid,
+.form-group textarea:user-invalid {
+  border-color: #f87171;
+  box-shadow: 0 0 0 3px rgba(248,113,113,.12);
+}
+.form-group input:user-valid:required,
+.form-group textarea:user-valid:required { border-color: rgba(74,222,128,.45); }
 .form-note { font-size: .77rem; color: var(--text-dim); text-align: center; margin-top: .25rem; }
 
 /* ===== FOOTER ===== */

@@ -64,6 +64,10 @@ const navLinks = document.querySelectorAll('.nav__link');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
+      // Some sections (#timeline, #signature) intentionally have no nav
+      // link — keep the previous highlight instead of blanking them all.
+      const hasLink = [...navLinks].some(l => l.getAttribute('href') === `#${entry.target.id}`);
+      if (!hasLink) return;
       navLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
       });
