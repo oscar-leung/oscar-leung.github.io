@@ -8,6 +8,9 @@
 
 /* ===== TOKENS ===== */
 :root {
+  /* The design is committed dark: tell the browser so native form controls,
+     scrollbars and the iframe UA styles render dark instead of glaring white. */
+  color-scheme: dark;
   --bg:           #070b18;
   --bg-alt:       #0b1023;
   --bg-card:      #111827;
@@ -288,6 +291,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .section__title {
   font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700;
   position: relative; display: inline-block;
+  text-wrap: balance;
 }
 .section__title::after {
   content: ''; position: absolute; bottom: -7px; left: 0;
@@ -787,6 +791,12 @@ html.js .fade-in.visible { opacity: 1; transform: none; }
   .hero { padding: 80px 1.25rem 3rem; }
   .hero__ctas { flex-direction: column; align-items: center; }
   .hero__ctas .btn { width: 100%; justify-content: center; max-width: 280px; }
+  /* Reclaim horizontal room on narrow phones — 1.6rem+ card padding eats
+     a quarter of a 375px viewport once section padding is counted. */
+  .featured-project { padding: 1.5rem 1.2rem; }
+  .skill-card, .project-card, .beyond-card { padding: 1.25rem 1.1rem; }
+  .contact-form { padding: 1.25rem 1.1rem; }
+  .vibe-switcher { bottom: 1rem; right: 1rem; width: 44px; height: 44px; }
   #experience .timeline { padding-left: 1.5rem; }
   .timeline__content { padding: 1.1rem 1.2rem; }
   .timeline__dot { left: -1.85rem; }
