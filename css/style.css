@@ -8,6 +8,9 @@
 
 /* ===== TOKENS ===== */
 :root {
+  /* The design is committed dark: tell the browser so native form controls,
+     scrollbars and the iframe UA styles render dark instead of glaring white. */
+  color-scheme: dark;
   --bg:           #070b18;
   --bg-alt:       #0b1023;
   --bg-card:      #111827;
@@ -288,6 +291,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .section__title {
   font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700;
   position: relative; display: inline-block;
+  text-wrap: balance;
 }
 .section__title::after {
   content: ''; position: absolute; bottom: -7px; left: 0;
@@ -616,6 +620,51 @@ html.js .fade-in.visible { opacity: 1; transform: none; }
   height: 100%;
   border: none;
 }
+/* Click-to-load facade: thumbnail + play button until someone presses play.
+   Fills the same 16:9 box the iframe does once it replaces the facade. */
+.video-facade {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  padding: 0; border: none; cursor: pointer;
+  background: #000; display: block;
+}
+.video-facade img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  opacity: .85;
+  transition: opacity var(--t), transform var(--t-slow);
+}
+.video-facade:hover img, .video-facade:focus-visible img { opacity: 1; transform: scale(1.03); }
+.video-facade__play {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px; height: 44px; border-radius: 12px;
+  background: rgba(7,11,24,.72);
+  border: 1px solid var(--border-lit);
+  backdrop-filter: blur(3px);
+  transition: background var(--t), transform var(--t);
+}
+.video-facade__play::after {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-42%, -50%);
+  border-style: solid; border-width: 9px 0 9px 15px;
+  border-color: transparent transparent transparent var(--accent);
+}
+.video-facade:hover .video-facade__play,
+.video-facade:focus-visible .video-facade__play {
+  background: rgba(7,11,24,.9);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+/* CI status badges — bare shields.io <img>s dropped in by the content pass */
+img[src*="img.shields.io"] {
+  display: inline-block; height: 20px; width: auto;
+  vertical-align: middle; border-radius: 4px;
+}
+.featured-project__links a:not(.btn) { display: inline-flex; align-items: center; }
+.project-card__desc img[src*="img.shields.io"] { margin-top: .25rem; }
+
 .video-card__info { padding: 1rem 1.2rem; }
 .video-card__tag {
   font-size: .7rem;
@@ -638,14 +687,17 @@ html.js .fade-in.visible { opacity: 1; transform: none; }
 }
 .videos__cta { text-align: center; }
 
-/* ===== TIMELINE / EXPERIENCE ===== */
-.timeline {
+/* ===== TIMELINE / EXPERIENCE =====
+   Scoped to #experience: the Project Timeline section (#timeline) reuses the
+   same class names with a different design further down, and unscoped rules
+   were bleeding between the two (double dots, doubled card chrome). */
+#experience .timeline {
   position: relative;
   padding-left: 2.25rem;
   max-width: 860px;
   margin: 0 auto;
 }
-.timeline::before {
+#experience .timeline::before {
   content: '';
   position: absolute;
   left: 0;
@@ -655,11 +707,11 @@ html.js .fade-in.visible { opacity: 1; transform: none; }
   background: linear-gradient(to bottom, var(--accent), var(--accent-2) 50%, rgba(56,189,248,.08));
   border-radius: 2px;
 }
-.timeline__item {
+#experience .timeline__item {
   position: relative;
   padding: 0 0 2.75rem 2rem;
 }
-.timeline__item:last-child { padding-bottom: 0; }
+#experience .timeline__item:last-child { padding-bottom: 0; }
 .timeline__dot {
   position: absolute;
   left: -2.55rem;
@@ -784,9 +836,17 @@ html.js .fade-in.visible { opacity: 1; transform: none; }
   .hero { padding: 80px 1.25rem 3rem; }
   .hero__ctas { flex-direction: column; align-items: center; }
   .hero__ctas .btn { width: 100%; justify-content: center; max-width: 280px; }
-  .timeline { padding-left: 1.5rem; }
+  /* Reclaim horizontal room on narrow phones — 1.6rem+ card padding eats
+     a quarter of a 375px viewport once section padding is counted. */
+  .featured-project { padding: 1.5rem 1.2rem; }
+  .skill-card, .project-card, .beyond-card { padding: 1.25rem 1.1rem; }
+  .contact-form { padding: 1.25rem 1.1rem; }
+  .vibe-switcher { bottom: 1rem; right: 1rem; width: 44px; height: 44px; }
+  #experience .timeline { padding-left: 1.5rem; }
   .timeline__content { padding: 1.1rem 1.2rem; }
   .timeline__dot { left: -1.85rem; }
+  #timeline .timeline { padding-left: 1.4rem; }
+  #timeline .timeline__item::before { left: -1.38rem; }
 }
 
 /* ===== VIBE THEMES ===== */
@@ -999,16 +1059,17 @@ body.party .project-card__icon {
   }
 }
 
-/* ---------- TIMELINE ---------- */
+/* ---------- PROJECT TIMELINE (#timeline) ----------
+   Scoped: shares class names with the Experience timeline above. */
 .timeline__intro {
   max-width: 640px; margin: 0 auto 3rem; text-align: center;
   color: var(--text-muted); line-height: 1.7;
 }
-.timeline {
+#timeline .timeline {
   position: relative; max-width: 720px; margin: 0 auto;
   padding-left: 2rem;
 }
-.timeline::before {
+#timeline .timeline::before {
   content: ''; position: absolute; left: .45rem; top: 0; bottom: 0;
   width: 2px; background: linear-gradient(180deg, var(--border-lit), var(--accent-2), var(--accent-3));
   opacity: .5;
@@ -1021,13 +1082,13 @@ body.party .project-card__icon {
 }
 .timeline__era-badge--hand { color: var(--accent-3); }
 .timeline__era-badge--ai   { color: var(--green); }
-.timeline__item {
+#timeline .timeline__item {
   position: relative; margin-bottom: 1.6rem; padding: 1rem 1.2rem;
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--r); transition: border-color var(--t), transform var(--t);
 }
-.timeline__item:hover { border-color: var(--border-lit); transform: translateX(4px); }
-.timeline__item::before {
+#timeline .timeline__item:hover { border-color: var(--border-lit); transform: translateX(4px); }
+#timeline .timeline__item::before {
   content: ''; position: absolute; left: -1.98rem; top: 1.35rem;
   width: 9px; height: 9px; border-radius: 50%;
   background: var(--accent); box-shadow: 0 0 8px var(--accent);

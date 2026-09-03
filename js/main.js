@@ -8,12 +8,12 @@ const PREFERS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').ma
 const POINTER_FINE    = window.matchMedia('(pointer: fine)').matches;
 
 // ===== TYPING EFFECT =====
+// roles[0] matters most: reduced-motion users see it statically.
 const roles = [
-  'Software Engineer',
   'QA Automation Engineer',
   'SDET',
   'Software Engineer in Test',
-  'Python Developer',
+  'Software Engineer',
 ];
 
 let roleIndex = 0;
@@ -201,6 +201,9 @@ const statObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.stat-card').forEach(c => statObserver.observe(c));
 
 // ===== 3D TILT ON CARDS =====
+// Fine-pointer only: on touch, pointermove fires mid-scroll and the cards
+// wobble under the finger. Reduced-motion users get no tilt at all.
+if (POINTER_FINE && !PREFERS_REDUCED)
 document.querySelectorAll('.project-card, .skill-card').forEach(card => {
   let raf = null;
   card.addEventListener('pointermove', (e) => {
@@ -221,6 +224,8 @@ document.querySelectorAll('.project-card, .skill-card').forEach(card => {
 
 // ===== MAGNETIC BUTTONS =====
 // Primary CTAs gently pull toward the cursor while hovered.
+// Fine-pointer + full-motion only, same reasoning as the tilt above.
+if (POINTER_FINE && !PREFERS_REDUCED)
 document.querySelectorAll('.btn--primary, .nav__link.contact-cta').forEach(btn => {
   const strength = 0.3;
   btn.addEventListener('pointermove', (e) => {
@@ -243,6 +248,7 @@ function getConfettiColors() {
   ];
 }
 function spawnConfetti(x, y, count = 50) {
+  if (PREFERS_REDUCED) return; // no surprise motion for reduced-motion users
   const colors = getConfettiColors();
   for (let i = 0; i < count; i++) {
     const c = document.createElement('div');
@@ -269,7 +275,20 @@ document.querySelectorAll('.nav__link.contact-cta, .hero__ctas .btn--primary').f
     spawnConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2, 40);
   });
 });
-document.querySelector('.contact-form')?.addEventListener('submit', () => {
+// On submit: confetti, plus a loading state — the Formsubmit redirect can
+// take seconds and an idle-looking button invites a double submit.
+document.querySelector('.contact-form')?.addEventListener('submit', (e) => {
+  const form = e.currentTarget;
+  if (form.dataset.submitting) { e.preventDefault(); return; }
+  form.dataset.submitting = 'true';
+  const btn = form.querySelector('button[type="submit"]');
+  if (btn) {
+    btn.setAttribute('aria-disabled', 'true'); // not disabled: that would strip it from the POST-in-flight tab order announcement
+    btn.setAttribute('aria-busy', 'true');
+    btn.style.opacity = '.7';
+    btn.style.pointerEvents = 'none';
+    btn.textContent = 'Sending…';
+  }
   spawnConfetti(window.innerWidth / 2, window.innerHeight / 2, 70);
 });
 
@@ -279,9 +298,11 @@ function showToast(msg, duration = 1800) {
   if (!_toastEl) {
     _toastEl = document.createElement('div');
     _toastEl.className = 'toast';
+    // Live region must exist in the DOM *before* content changes,
+    // or screen readers never announce the first toast.
+    _toastEl.setAttribute('role', 'status');
     document.body.appendChild(_toastEl);
   }
-  _toastEl.setAttribute('role', 'status');
   _toastEl.textContent = msg;
   _toastEl.classList.add('show');
   clearTimeout(_toastTimer);
@@ -295,7 +316,15 @@ const themes = [
   { name: 'forest', icon: '🌿', cls: 'theme-forest' },
   { name: 'neon',   icon: '💜', cls: 'theme-neon' },
 ];
-let themeIdx = parseInt(localStorage.getItem('vibeIdx') || '0', 10) || 0;
+// localStorage throws (SecurityError) when storage is blocked — Safari
+// "Block all cookies", some private/embedded contexts. Guard every touch,
+// or everything below this line silently dies with it.
+const safeStorage = {
+  get(key) { try { return localStorage.getItem(key); } catch { return null; } },
+  set(key, val) { try { localStorage.setItem(key, val); } catch { /* no-op */ } },
+};
+let themeIdx = parseInt(safeStorage.get('vibeIdx') || '0', 10) || 0;
+if (themeIdx < 0 || themeIdx > 3) themeIdx = 0; // stale/garbage stored index
 const vibeBtn = document.getElementById('vibeSwitcher');
 function applyTheme(idx) {
   themes.forEach(t => t.cls && document.documentElement.classList.remove(t.cls));
@@ -305,7 +334,7 @@ function applyTheme(idx) {
 applyTheme(themeIdx);
 vibeBtn?.addEventListener('click', () => {
   themeIdx = (themeIdx + 1) % themes.length;
-  localStorage.setItem('vibeIdx', themeIdx);
+  safeStorage.set('vibeIdx', themeIdx);
   applyTheme(themeIdx);
   showToast(`Vibe: ${themes[themeIdx].name}`);
 });
@@ -358,6 +387,23 @@ document.querySelectorAll('.beyond-card[data-easter]').forEach(card => {
       showToast('📸 *click*');
       setTimeout(() => flash.remove(), 600);
     }
+  });
+});
+
+// ===== YOUTUBE FACADES =====
+// The three embeds cost ~500KB+ each before anyone presses play. The cards
+// ship a thumbnail-only <button>; the real player is built on demand.
+document.querySelectorAll('.video-facade').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.videoId;
+    if (!id) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1`;
+    iframe.title = btn.dataset.videoTitle || 'YouTube video';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    btn.replaceWith(iframe);
+    iframe.focus();
   });
 });
 

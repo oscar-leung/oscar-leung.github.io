@@ -10,7 +10,8 @@
   <meta property="og:url"         content="https://oscar-leung.github.io/" />
   <meta property="og:title"       content="Oscar Leung | QA Automation Engineer & SDET" />
   <meta property="og:description" content="5+ years across aerospace, government & consumer tech. B.S. CS SJSU. Playwright · TypeScript · Selenium · pytest · GCP ×5 certified. Available Davis/Sacramento, Bay Area, or remote." />
-  <meta property="og:image"       content="https://oscar-leung.github.io/og-image.svg" />
+  <meta property="og:image"       content="https://oscar-leung.github.io/og-image.png" />
+  <meta property="og:image:type"  content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
@@ -18,7 +19,7 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Oscar Leung | QA Automation Engineer & SDET" />
   <meta name="twitter:description" content="5+ years across aerospace, government & consumer tech. Playwright · TypeScript · Selenium · pytest · GCP ×5. Available Davis/Sacramento, Bay Area, or remote." />
-  <meta name="twitter:image"       content="https://oscar-leung.github.io/og-image.svg" />
+  <meta name="twitter:image"       content="https://oscar-leung.github.io/og-image.png" />
   <link rel="canonical" href="https://oscar-leung.github.io/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070b18'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-size='15' font-weight='bold' fill='%2338bdf8' text-anchor='middle'%3EOL%3C/text%3E%3C/svg%3E" />
   <meta name="theme-color" content="#070b18" />
@@ -105,7 +106,8 @@
       <p class="hero__greeting fade-up">Hi, I'm</p>
       <h1 class="hero__name fade-up">Oscar Leung</h1>
       <div class="hero__role fade-up">
-        <span class="hero__role-typed" id="typedText"></span><span class="hero__cursor">|</span>
+        <span class="visually-hidden">QA Automation Engineer, SDET, Software Engineer</span>
+        <span aria-hidden="true"><span class="hero__role-typed" id="typedText"></span><span class="hero__cursor">|</span></span>
       </div>
       <p class="hero__subtitle fade-up">
         QA Automation Engineer &amp; SDET with 5+ years across aerospace, government, and consumer tech.
@@ -688,7 +690,7 @@
   </section>
 
   <!-- VIDEOS -->
-  <section class="section section--alt" id="videos">
+  <section class="section" id="videos">
     <div class="container">
       <div class="section__header fade-in">
         <p class="section__eyebrow">Learning in Public</p>
@@ -706,14 +708,13 @@
         <!-- CSS Grid Garden -->
         <div class="video-card">
           <div class="video-card__embed">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/xIyQ-0j5sdo"
-              title="CSS Grid Garden — Levels 1–28"
-             
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy">
-            </iframe>
+            <button class="video-facade" type="button"
+                    data-video-id="xIyQ-0j5sdo"
+                    data-video-title="CSS Grid Garden — Levels 1–28">
+              <img src="https://i.ytimg.com/vi/xIyQ-0j5sdo/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" />
+              <span class="video-facade__play" aria-hidden="true"></span>
+              <span class="visually-hidden">Play video: CSS Grid Garden — Levels 1–28</span>
+            </button>
           </div>
           <div class="video-card__info">
             <span class="video-card__tag">Learning in Public</span>
@@ -724,14 +725,13 @@
         <!-- Flexbox Froggy -->
         <div class="video-card">
           <div class="video-card__embed">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/xwipjZKEgc4"
-              title="Flexbox Froggy — Levels 1–24"
-             
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy">
-            </iframe>
+            <button class="video-facade" type="button"
+                    data-video-id="xwipjZKEgc4"
+                    data-video-title="Flexbox Froggy — Levels 1–24">
+              <img src="https://i.ytimg.com/vi/xwipjZKEgc4/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" />
+              <span class="video-facade__play" aria-hidden="true"></span>
+              <span class="visually-hidden">Play video: Flexbox Froggy — Levels 1–24</span>
+            </button>
           </div>
           <div class="video-card__info">
             <span class="video-card__tag">Learning in Public</span>
@@ -742,14 +742,13 @@
         <!-- FreeCodeCamp CSS -->
         <div class="video-card">
           <div class="video-card__embed">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/uNfaoeT7r5A"
-              title="FreeCodeCamp Responsive Web Design — Basic CSS"
-             
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy">
-            </iframe>
+            <button class="video-facade" type="button"
+                    data-video-id="uNfaoeT7r5A"
+                    data-video-title="FreeCodeCamp Responsive Web Design — Basic CSS">
+              <img src="https://i.ytimg.com/vi/uNfaoeT7r5A/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" />
+              <span class="video-facade__play" aria-hidden="true"></span>
+              <span class="visually-hidden">Play video: FreeCodeCamp Responsive Web Design — Basic CSS</span>
+            </button>
           </div>
           <div class="video-card__info">
             <span class="video-card__tag">Learning in Public</span>
@@ -924,25 +923,25 @@
             <input type="hidden" name="_captcha"  value="false" />
             <input type="hidden" name="_subject"  value="Portfolio Contact — New Message" />
             <input type="hidden" name="_next"     value="https://oscar-leung.github.io/#contact" />
-            <input type="text"   name="_honey"    class="visually-hidden" tabindex="-1" autocomplete="off" />
+            <input type="text"   name="_honey"    class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Name <span class="required">*</span></label>
-                <input type="text" id="name" name="name" placeholder="Your name" required />
+                <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
               </div>
               <div class="form-group">
                 <label for="company">Company</label>
-                <input type="text" id="company" name="company" placeholder="Your company" />
+                <input type="text" id="company" name="company" placeholder="Your company" autocomplete="organization" />
               </div>
             </div>
             <div class="form-group">
               <label for="email">Email <span class="required">*</span></label>
-              <input type="email" id="email" name="email" placeholder="you@company.com" required />
+              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required />
             </div>
             <div class="form-group">
               <label for="role">Role / Position</label>
-              <input type="text" id="role" name="role" placeholder="e.g. Senior QA Engineer, SDET, SWE" />
+              <input type="text" id="role" name="role" placeholder="e.g. Senior QA Engineer, SDET, SWE" autocomplete="organization-title" />
             </div>
             <div class="form-group">
               <label for="message">Message <span class="required">*</span></label>
@@ -982,6 +981,6 @@
     &#127754;
   </button>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
