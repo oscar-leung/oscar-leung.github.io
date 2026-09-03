@@ -27,10 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
-  <!-- Caveat is only used by the below-the-fold etch-a-sketch signature:
-       load it without blocking render (media=print swap trick). -->
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet" /></noscript>
+  <!-- Caveat font removed: its only consumer (etch-a-sketch signature card) was cut in the recruiter round -->
   <link rel="stylesheet" href="css/style.css" />
 
   <noscript><style>.fade-in, .fade-up { opacity: 1 !important; transform: none !important; animation: none !important; }</style></noscript>
@@ -84,10 +81,10 @@
     <div class="nav__inner">
       <a href="#hero" class="nav__logo">OL<span class="nav__logo-dot">.</span></a>
       <ul class="nav__links" id="navLinks">
-        <li><a href="#about"      class="nav__link">About</a></li>
-        <li><a href="#skills"     class="nav__link">Skills</a></li>
-        <li><a href="#experience" class="nav__link">Experience</a></li>
         <li><a href="#projects"   class="nav__link">Projects</a></li>
+        <li><a href="#experience" class="nav__link">Experience</a></li>
+        <li><a href="#skills"     class="nav__link">Skills</a></li>
+        <li><a href="#about"      class="nav__link">About</a></li>
         <li><a href="#beyond"     class="nav__link">Beyond</a></li>
         <li><a href="#contact"    class="nav__link contact-cta">Hire Me</a></li>
       </ul>
@@ -133,178 +130,114 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="section" id="about">
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
     <div class="container">
       <div class="section__header fade-in">
-        <p class="section__eyebrow">Who I Am</p>
-        <h2 class="section__title">About Me</h2>
+        <p class="section__eyebrow">What I've Built</p>
+        <h2 class="section__title">Projects</h2>
       </div>
-      <div class="about__grid fade-in">
-        <div class="about__text">
-          <p>
-            I'm a <strong>QA Automation Engineer &amp; SDET based in Davis, CA</strong> with a
-            <strong>B.S. in Computer Science from San José State University</strong>, testing
-            professionally <strong>since 2019</strong> across aerospace, government, consumer tech,
-            and AI. I write production Python, Java, and TypeScript, architect test automation
-            frameworks from scratch, and deliver measurable results — not just coverage numbers.
-          </p>
-          <p>
-            My background spans <strong>spacecraft systems validation at Maxar</strong>,
-            <strong>Salesforce automation for the State of Illinois</strong>, mobile QA for
-            <strong>AT&T carrier apps at Location Labs / Avast</strong>, and product work at
-            Dabba Eats — and since November 2025 I've been applying that same rigor to
-            <strong>frontier AI model evaluation at Handshake AI</strong>: 600+ agentic coding
-            evaluations, rubric-based scoring, and adversarial red-teaming. I'm the engineer who
-            thinks about quality from day one — not as an afterthought.
-          </p>
-          <p>
-            I also went through <strong>Interview Kickstart</strong> to sharpen CS fundamentals and
-            system design. Fast learner, bias for action, no hand-holding needed.
-          </p>
-          <p>
-            Currently available for <strong>Software Engineer, QA Automation, and SDET</strong> roles
-            in Davis/Sacramento, the Bay Area, or fully remote. Let's build something reliable together.
-          </p>
 
-          <div class="about__badges">
-            <span class="badge badge--green">&#10003; Available Now</span>
-            <span class="badge badge--green">&#10003; Davis / Bay Area &amp; Remote</span>
-            <span class="badge badge--blue">Testing since 2019</span>
+      <!-- FEATURED -->
+      <div class="featured-project fade-in">
+        <div class="featured-project__content">
+          <p class="featured-project__label">&#11088; Featured Project</p>
+          <h3 class="featured-project__title">Playwright + TypeScript E2E &amp; API Suite</h3>
+          <p class="featured-project__desc">
+            My flagship QA portfolio: a 26-test Playwright/TypeScript suite covering UI and API
+            layers of a real e-commerce app, built the way a production test suite should be —
+            Page Object Model architecture, session-reuse authentication via storageState,
+            a real defect documented with test.fail(), and GitHub Actions CI running the full
+            suite on every push.
+          </p>
+          <div class="featured-project__bullets">
+            <div class="bullet"><span>&#9654;</span>26 tests across UI and API layers — login, cart, checkout, REST endpoints</div>
+            <div class="bullet"><span>&#9654;</span>Page Object Model with typed fixtures — maintainable, not brittle</div>
+            <div class="bullet"><span>&#9654;</span>storageState session reuse — authenticated tests without repeated logins</div>
+            <div class="bullet"><span>&#9654;</span>A known app bug pinned with test.fail() — defects documented, not hidden</div>
+            <div class="bullet"><span>&#9654;</span>GitHub Actions CI on every push — green badge, public run history</div>
+          </div>
+          <div class="featured-project__tags tags">
+            <span class="tag tag--accent">Playwright</span>
+            <span class="tag tag--accent">TypeScript</span>
+            <span class="tag tag--accent">GitHub Actions</span>
+            <span class="tag tag--accent">API Testing</span>
+            <span class="tag tag--accent">POM</span>
           </div>
         </div>
-
-        <div class="about__right">
-          <div class="stats-grid">
-            <div class="stat-card">
-              <span class="stat-card__num">2019</span>
-              <span class="stat-card__label">Testing professionally since</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__num">600+</span>
-              <span class="stat-card__label">AI code evaluations for a frontier lab</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__num">4</span>
-              <span class="stat-card__label">Industries: Aerospace · Gov · Consumer · AI</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-card__num">26</span>
-              <span class="stat-card__label">Automated tests in my public Playwright suite — CI green</span>
-            </div>
-          </div>
-
-          <div class="certs-box">
-            <p class="certs-box__title">Certifications</p>
-            <ul class="certs-list">
-              <li>
-                <span class="cert-icon">&#9729;</span>
-                Google Cloud Platform &mdash; 5-course Architecting specialization <span class="cert-meta">Coursera, 2020</span>
-              </li>
-              <li>
-                <span class="cert-icon">&#127891;</span>
-                Interview Kickstart <span class="cert-meta">2023–2024</span>
-              </li>
-              <li>
-                <span class="cert-icon">&#127891;</span>
-                B.S. Computer Science, Minor in Japanese <span class="cert-meta">SJSU, 2018</span>
-              </li>
-            </ul>
-          </div>
+        <div class="featured-project__links">
+          <a href="https://github.com/oscar-leung/playwright-qa-portfolio/actions/workflows/playwright.yml" target="_blank" rel="noopener" title="Latest CI runs">
+            <img src="https://img.shields.io/github/actions/workflow/status/oscar-leung/playwright-qa-portfolio/playwright.yml?branch=main&amp;label=Playwright%20CI" alt="Playwright CI status" loading="lazy" width="116" height="20" />
+          </a>
+          <a href="https://github.com/oscar-leung/playwright-qa-portfolio" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- SKILLS -->
-  <section class="section section--alt" id="skills">
-    <div class="container">
-      <div class="section__header fade-in">
-        <p class="section__eyebrow">What I Know</p>
-        <h2 class="section__title">Technical Skills</h2>
-      </div>
-      <div class="skills__grid fade-in">
+      <!-- PROJECT GRID -->
+      <div class="projects__grid fade-in">
 
-        <div class="skill-card">
-          <div class="skill-card__icon">&#128187;</div>
-          <h3 class="skill-card__title">Languages</h3>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Java</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">SQL</span>
-            <span class="tag">Bash / Shell</span>
-            <span class="tag">Tcl</span>
+        <article class="project-card">
+          <div class="project-card__head">
+            <span class="project-card__icon">&#128268;</span>
+            <a href="https://github.com/oscar-leung/CRM-Automation" target="_blank" rel="noopener" class="project-card__gh" title="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
           </div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-card__icon">&#129514;</div>
-          <h3 class="skill-card__title">Test &amp; Automation</h3>
+          <h3 class="project-card__title">Salesforce CRM Automation</h3>
+          <p class="project-card__desc">Java + Selenium framework built against Salesforce CRM from scratch using Page Object Model — full separation of concerns, TestNG runner, regression suite covering core CRM workflows.</p>
           <div class="tags">
-            <span class="tag">Selenium WebDriver</span>
-            <span class="tag">Playwright</span>
-            <span class="tag">pytest</span>
-            <span class="tag">JUnit / TestNG</span>
-            <span class="tag">Appium</span>
-            <span class="tag">Espresso</span>
-            <span class="tag">JMeter</span>
-            <span class="tag">Page Object Model</span>
-            <span class="tag">API Testing</span>
+            <span class="tag">Java</span><span class="tag">Selenium</span><span class="tag">TestNG</span><span class="tag">Salesforce</span><span class="tag">POM</span>
           </div>
-        </div>
+        </article>
 
-        <div class="skill-card">
-          <div class="skill-card__icon">&#9881;</div>
-          <h3 class="skill-card__title">Tools &amp; Platforms</h3>
-          <div class="tags">
-            <span class="tag">Git &amp; GitHub</span>
-            <span class="tag">GitHub Actions</span>
-            <span class="tag">Jenkins</span>
-            <span class="tag">TeamCity</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Postman</span>
-            <span class="tag">JIRA</span>
-            <span class="tag">Salesforce</span>
+        <article class="project-card">
+          <div class="project-card__head">
+            <span class="project-card__icon">&#128202;</span>
+            <a href="https://github.com/oscar-leung/qa-portfolio" target="_blank" rel="noopener" class="project-card__gh" title="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
           </div>
-        </div>
+          <h3 class="project-card__title">Selenium + pytest E2E Suite — SauceDemo</h3>
+          <p class="project-card__desc">Professional E2E test suite for a real e-commerce app: four core flows — login, inventory, cart, and checkout — covered with Python, Selenium, and pytest. Page Object Model architecture, data-driven parametrize, HTML failure reports with automatic screenshots, and a GitHub Actions CI workflow.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Selenium</span><span class="tag">pytest</span><span class="tag">POM</span><span class="tag">GitHub Actions</span>
+          </div>
+          <!-- pytest CI badge removed until qa-portfolio main workflow is green again -->
+        </article>
 
-        <div class="skill-card">
-          <div class="skill-card__icon">&#9729;</div>
-          <h3 class="skill-card__title">Cloud &amp; Infrastructure</h3>
-          <div class="tags">
-            <span class="tag">Google Cloud Platform</span>
-            <span class="tag">PythonAnywhere</span>
-            <span class="tag">CI/CD Pipelines</span>
-            <span class="tag">Headless Chrome</span>
-            <span class="tag">Google Sheets API</span>
+        <article class="project-card">
+          <div class="project-card__head">
+            <span class="project-card__icon">&#128188;</span>
+            <a href="https://github.com/oscar-leung/verbose-octo-carnival" target="_blank" rel="noopener" class="project-card__gh" title="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
           </div>
-        </div>
+          <h3 class="project-card__title">Job Search Automation Suite</h3>
+          <p class="project-card__desc">Python/Selenium tooling that automates my own job-search pipeline: processes 1,000+ listings per headless run, deduplicates by URL, fills multi-platform application forms, and syncs every result to a Google Sheets dashboard — deployed 24/7 on PythonAnywhere with respectful, rate-limit-aware pacing.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Selenium</span><span class="tag">Google Sheets API</span><span class="tag">PythonAnywhere</span><span class="tag">Headless Chrome</span>
+          </div>
+        </article>
 
-        <div class="skill-card">
-          <div class="skill-card__icon">&#128200;</div>
-          <h3 class="skill-card__title">Methodology</h3>
-          <div class="tags">
-            <span class="tag">Agile / Scrum</span>
-            <span class="tag">TDD / BDD</span>
-            <span class="tag">E2E Testing</span>
-            <span class="tag">Regression Testing</span>
-            <span class="tag">System Design</span>
+        <article class="project-card">
+          <div class="project-card__head">
+            <span class="project-card__icon">&#128506;</span>
+            <a href="https://oscar-leung.github.io/restroom-finder/" target="_blank" rel="noopener" class="project-card__gh" title="Live demo">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            <a href="https://github.com/oscar-leung/restroom-finder" target="_blank" rel="noopener" class="project-card__gh" title="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
           </div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-card__icon">&#127760;</div>
-          <h3 class="skill-card__title">Communication &amp; Languages</h3>
+          <h3 class="project-card__title">Gotta Go — Restroom Finder (Live App)</h3>
+          <p class="project-card__desc">A deployed, user-facing React app: find public restrooms near you on an interactive map. React + Vite + Leaflet on the Refuge Restrooms API — browser geolocation, accessibility &amp; gender-neutral filters, one-tap directions, PWA-installable, live on GitHub Pages. Proof I ship products, not just test them.</p>
           <div class="tags">
-            <span class="tag">Cross-team collab</span>
-            <span class="tag">Technical writing</span>
-            <span class="tag">Async-first</span>
-            <span class="tag">Cantonese</span>
-            <span class="tag">Japanese</span>
-            <span class="tag">Spanish</span>
+            <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Leaflet</span><span class="tag">REST API</span><span class="tag">GitHub Pages</span>
           </div>
-        </div>
+        </article>
 
       </div>
     </div>
@@ -435,225 +368,179 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section class="section" id="projects">
+  <!-- SKILLS -->
+  <section class="section section--alt" id="skills">
     <div class="container">
       <div class="section__header fade-in">
-        <p class="section__eyebrow">What I've Built</p>
-        <h2 class="section__title">Projects</h2>
+        <p class="section__eyebrow">What I Know</p>
+        <h2 class="section__title">Technical Skills</h2>
       </div>
+      <div class="skills__grid fade-in">
 
-      <!-- FEATURED -->
-      <div class="featured-project fade-in">
-        <div class="featured-project__content">
-          <p class="featured-project__label">&#11088; Featured Project</p>
-          <h3 class="featured-project__title">Playwright + TypeScript E2E &amp; API Suite</h3>
-          <p class="featured-project__desc">
-            My flagship QA portfolio: a 26-test Playwright/TypeScript suite covering UI and API
-            layers of a real e-commerce app, built the way a production test suite should be —
-            Page Object Model architecture, session-reuse authentication via storageState,
-            a real defect documented with test.fail(), and GitHub Actions CI running the full
-            suite on every push.
-          </p>
-          <div class="featured-project__bullets">
-            <div class="bullet"><span>&#9654;</span>26 tests across UI and API layers — login, cart, checkout, REST endpoints</div>
-            <div class="bullet"><span>&#9654;</span>Page Object Model with typed fixtures — maintainable, not brittle</div>
-            <div class="bullet"><span>&#9654;</span>storageState session reuse — authenticated tests without repeated logins</div>
-            <div class="bullet"><span>&#9654;</span>A known app bug pinned with test.fail() — defects documented, not hidden</div>
-            <div class="bullet"><span>&#9654;</span>GitHub Actions CI on every push — green badge, public run history</div>
-          </div>
-          <div class="featured-project__tags tags">
-            <span class="tag tag--accent">Playwright</span>
-            <span class="tag tag--accent">TypeScript</span>
-            <span class="tag tag--accent">GitHub Actions</span>
-            <span class="tag tag--accent">API Testing</span>
-            <span class="tag tag--accent">POM</span>
+        <div class="skill-card">
+          <div class="skill-card__icon">&#128187;</div>
+          <h3 class="skill-card__title">Languages</h3>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Bash / Shell</span>
+            <span class="tag">Tcl</span>
           </div>
         </div>
-        <div class="featured-project__links">
-          <a href="https://github.com/oscar-leung/playwright-qa-portfolio/actions/workflows/playwright.yml" target="_blank" rel="noopener" title="Latest CI runs">
-            <img src="https://img.shields.io/github/actions/workflow/status/oscar-leung/playwright-qa-portfolio/playwright.yml?branch=main&amp;label=Playwright%20CI" alt="Playwright CI status" loading="lazy" width="116" height="20" />
-          </a>
-          <a href="https://github.com/oscar-leung/playwright-qa-portfolio" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            View on GitHub
-          </a>
+
+        <div class="skill-card">
+          <div class="skill-card__icon">&#129514;</div>
+          <h3 class="skill-card__title">Test &amp; Automation</h3>
+          <div class="tags">
+            <span class="tag">Selenium WebDriver</span>
+            <span class="tag">Playwright</span>
+            <span class="tag">pytest</span>
+            <span class="tag">JUnit / TestNG</span>
+            <span class="tag">Appium</span>
+            <span class="tag">Espresso</span>
+            <span class="tag">JMeter</span>
+            <span class="tag">Page Object Model</span>
+            <span class="tag">API Testing</span>
+          </div>
         </div>
-      </div>
 
-      <!-- PROJECT GRID -->
-      <div class="projects__grid fade-in">
-
-        <article class="project-card">
-          <div class="project-card__head">
-            <span class="project-card__icon">&#128268;</span>
-            <a href="https://github.com/oscar-leung/CRM-Automation" target="_blank" rel="noopener" class="project-card__gh" title="GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-          </div>
-          <h3 class="project-card__title">Salesforce CRM Automation</h3>
-          <p class="project-card__desc">Java + Selenium framework built against Salesforce CRM from scratch using Page Object Model — full separation of concerns, TestNG runner, regression suite covering core CRM workflows.</p>
+        <div class="skill-card">
+          <div class="skill-card__icon">&#9881;</div>
+          <h3 class="skill-card__title">Tools &amp; Platforms</h3>
           <div class="tags">
-            <span class="tag">Java</span><span class="tag">Selenium</span><span class="tag">TestNG</span><span class="tag">Salesforce</span><span class="tag">POM</span>
+            <span class="tag">Git &amp; GitHub</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Jenkins</span>
+            <span class="tag">TeamCity</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Postman</span>
+            <span class="tag">JIRA</span>
+            <span class="tag">Salesforce</span>
           </div>
-        </article>
+        </div>
 
-        <article class="project-card">
-          <div class="project-card__head">
-            <span class="project-card__icon">&#128202;</span>
-            <a href="https://github.com/oscar-leung/qa-portfolio" target="_blank" rel="noopener" class="project-card__gh" title="GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-          </div>
-          <h3 class="project-card__title">Selenium + pytest E2E Suite — SauceDemo</h3>
-          <p class="project-card__desc">Professional E2E test suite for a real e-commerce app: four core flows — login, inventory, cart, and checkout — covered with Python, Selenium, and pytest. Page Object Model architecture, data-driven parametrize, HTML failure reports with automatic screenshots, and a GitHub Actions CI workflow.</p>
+        <div class="skill-card">
+          <div class="skill-card__icon">&#9729;</div>
+          <h3 class="skill-card__title">Cloud &amp; Infrastructure</h3>
           <div class="tags">
-            <span class="tag">Python</span><span class="tag">Selenium</span><span class="tag">pytest</span><span class="tag">POM</span><span class="tag">GitHub Actions</span>
+            <span class="tag">Google Cloud Platform</span>
+            <span class="tag">PythonAnywhere</span>
+            <span class="tag">CI/CD Pipelines</span>
+            <span class="tag">Headless Chrome</span>
+            <span class="tag">Google Sheets API</span>
           </div>
-          <!-- pytest CI badge removed until qa-portfolio main workflow is green again -->
-        </article>
+        </div>
 
-        <article class="project-card">
-          <div class="project-card__head">
-            <span class="project-card__icon">&#128188;</span>
-            <a href="https://github.com/oscar-leung/verbose-octo-carnival" target="_blank" rel="noopener" class="project-card__gh" title="GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-          </div>
-          <h3 class="project-card__title">Job Search Automation Suite</h3>
-          <p class="project-card__desc">Python/Selenium tooling that automates my own job-search pipeline: processes 1,000+ listings per headless run, deduplicates by URL, fills multi-platform application forms, and syncs every result to a Google Sheets dashboard — deployed 24/7 on PythonAnywhere with respectful, rate-limit-aware pacing.</p>
+        <div class="skill-card">
+          <div class="skill-card__icon">&#128200;</div>
+          <h3 class="skill-card__title">Methodology</h3>
           <div class="tags">
-            <span class="tag">Python</span><span class="tag">Selenium</span><span class="tag">Google Sheets API</span><span class="tag">PythonAnywhere</span><span class="tag">Headless Chrome</span>
+            <span class="tag">Agile / Scrum</span>
+            <span class="tag">TDD / BDD</span>
+            <span class="tag">E2E Testing</span>
+            <span class="tag">Regression Testing</span>
+            <span class="tag">System Design</span>
           </div>
-        </article>
+        </div>
 
-        <article class="project-card">
-          <div class="project-card__head">
-            <span class="project-card__icon">&#128506;</span>
-            <a href="https://oscar-leung.github.io/restroom-finder/" target="_blank" rel="noopener" class="project-card__gh" title="Live demo">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-            <a href="https://github.com/oscar-leung/restroom-finder" target="_blank" rel="noopener" class="project-card__gh" title="GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-          </div>
-          <h3 class="project-card__title">Gotta Go — Restroom Finder (Live App)</h3>
-          <p class="project-card__desc">A deployed, user-facing React app: find public restrooms near you on an interactive map. React + Vite + Leaflet on the Refuge Restrooms API — browser geolocation, accessibility &amp; gender-neutral filters, one-tap directions, PWA-installable, live on GitHub Pages. Proof I ship products, not just test them.</p>
+        <div class="skill-card">
+          <div class="skill-card__icon">&#127760;</div>
+          <h3 class="skill-card__title">Communication &amp; Languages</h3>
           <div class="tags">
-            <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Leaflet</span><span class="tag">REST API</span><span class="tag">GitHub Pages</span>
+            <span class="tag">Cross-team collab</span>
+            <span class="tag">Technical writing</span>
+            <span class="tag">Async-first</span>
+            <span class="tag">Cantonese</span>
+            <span class="tag">Japanese</span>
+            <span class="tag">Spanish</span>
           </div>
-        </article>
+        </div>
 
       </div>
     </div>
   </section>
 
-  <!-- TIMELINE -->
-  <section class="section" id="timeline">
+  <!-- ABOUT -->
+  <section class="section" id="about">
     <div class="container">
       <div class="section__header fade-in">
-        <p class="section__eyebrow">The Long Game</p>
-        <h2 class="section__title">Project Timeline</h2>
+        <p class="section__eyebrow">Who I Am</p>
+        <h2 class="section__title">About Me</h2>
       </div>
-      <p class="timeline__intro fade-in">
-        Every repo tells a story. The early work below was built <strong>entirely by hand, before AI coding tools existed</strong> —
-        kept online on purpose, because knowing the fundamentals is what lets me verify AI-era output instead of just trusting it.
-      </p>
+      <div class="about__grid fade-in">
+        <div class="about__text">
+          <p>
+            I'm a <strong>QA Automation Engineer &amp; SDET based in Davis, CA</strong> with a
+            <strong>B.S. in Computer Science from San José State University</strong>, testing
+            professionally <strong>since 2019</strong> across aerospace, government, consumer tech,
+            and AI. I write production Python, Java, and TypeScript, architect test automation
+            frameworks from scratch, and deliver measurable results — not just coverage numbers.
+          </p>
+          <p>
+            My background spans <strong>spacecraft systems validation at Maxar</strong>,
+            <strong>Salesforce automation for the State of Illinois</strong>, mobile QA for
+            <strong>AT&T carrier apps at Location Labs / Avast</strong>, and product work at
+            Dabba Eats — and since November 2025 I've been applying that same rigor to
+            <strong>frontier AI model evaluation at Handshake AI</strong>: 600+ agentic coding
+            evaluations, rubric-based scoring, and adversarial red-teaming. I'm the engineer who
+            thinks about quality from day one — not as an afterthought.
+          </p>
+          <p>
+            I shipped hand-written Selenium frameworks years before AI pair-programming existed —
+            which is why I can <strong>verify AI-generated code instead of trusting it</strong>.
+          </p>
+          <p>
+            Currently available for <strong>Software Engineer, QA Automation, and SDET</strong> roles
+            in Davis/Sacramento, the Bay Area, or fully remote. Let's build something reliable together.
+          </p>
 
-      <div class="timeline fade-in">
-
-        <div class="timeline__era">
-          <span class="timeline__era-badge timeline__era-badge--hand">&#9997;&#65039; Pre-AI era — every line hand-written</span>
-        </div>
-
-        <div class="timeline__item">
-          <span class="timeline__date">2018</span>
-          <div class="timeline__body">
-            <h3><a href="https://github.com/oscar-leung/Tyrian0.1" target="_blank" rel="noopener">Tyrian 0.1</a></h3>
-            <p>A playable game built for SJSU's Computer Game Design class — first public repo, still up.</p>
+          <div class="about__badges">
+            <span class="badge badge--green">&#10003; Available Now</span>
+            <span class="badge badge--green">&#10003; Davis / Bay Area &amp; Remote</span>
+            <span class="badge badge--blue">Testing since 2019</span>
           </div>
         </div>
 
-        <div class="timeline__item">
-          <span class="timeline__date">2021</span>
-          <div class="timeline__body">
-            <h3><a href="https://github.com/oscar-leung/CRM-Automation" target="_blank" rel="noopener">CRM-Automation</a></h3>
-            <p>First test-automation framework: Java + Selenium + TestNG against Salesforce CRM, Page Object Model from scratch.</p>
+        <div class="about__right">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-card__num">2019</span>
+              <span class="stat-card__label">Testing professionally since</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__num">600+</span>
+              <span class="stat-card__label">AI code evaluations for a frontier lab</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__num">4</span>
+              <span class="stat-card__label">Industries: Aerospace · Gov · Consumer · AI</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__num">26</span>
+              <span class="stat-card__label">Automated tests in my public Playwright suite — CI green</span>
+            </div>
+          </div>
+
+          <div class="certs-box">
+            <p class="certs-box__title">Certifications</p>
+            <ul class="certs-list">
+              <li>
+                <span class="cert-icon">&#9729;</span>
+                Google Cloud Platform &mdash; 5-course Architecting specialization <span class="cert-meta">Coursera, 2020</span>
+              </li>
+              <li>
+                <span class="cert-icon">&#127891;</span>
+                Interview Kickstart <span class="cert-meta">2023–2024</span>
+              </li>
+              <li>
+                <span class="cert-icon">&#127891;</span>
+                B.S. Computer Science, Minor in Japanese <span class="cert-meta">SJSU, 2018</span>
+              </li>
+            </ul>
           </div>
         </div>
-
-        <div class="timeline__item">
-          <span class="timeline__date">2021</span>
-          <div class="timeline__body">
-            <h3><a href="https://oscar-leung.netlify.app/" target="_blank" rel="noopener">First Portfolio Site</a> <span class="timeline__tag">time capsule</span></h3>
-            <p>Gatsby + Sanity CMS portfolio with my earliest hand-coded pages — a jQuery tax calculator, my first valid-HTML site.
-               Deliberately left live at <a href="https://oscar-leung.netlify.app/" target="_blank" rel="noopener">oscar-leung.netlify.app</a>
-               as a snapshot of where I started.</p>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <span class="timeline__date">2021–22</span>
-          <div class="timeline__body">
-            <h3><a href="https://github.com/oscar-leung/LinkedIn-Automation" target="_blank" rel="noopener">Early automation &amp; training</a></h3>
-            <p>LinkedIn automation experiments, HackerRank practice, and full-stack coursework from the Mission Techies program (MEDA, San Francisco).</p>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <span class="timeline__date">2023</span>
-          <div class="timeline__body">
-            <h3><a href="https://github.com/oscar-leung/verbose-octo-carnival" target="_blank" rel="noopener">verbose-octo-carnival</a></h3>
-            <p>A grab-bag of utility and processing scripts written by hand during the Maxar years — the unglamorous glue work that teaches you how software actually breaks. The same repo later grew into the Job Search Automation Suite.</p>
-          </div>
-        </div>
-
-        <div class="timeline__era">
-          <span class="timeline__era-badge timeline__era-badge--ai">&#9889; AI-assisted era — building faster, verifying everything</span>
-        </div>
-
-        <div class="timeline__item">
-          <span class="timeline__date">04/2026</span>
-          <div class="timeline__body">
-            <h3><a href="https://github.com/oscar-leung/oscar-leung.github.io" target="_blank" rel="noopener">This website</a></h3>
-            <p>The professional portfolio you're reading — hand-designed, AI-accelerated, every line reviewed.</p>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <span class="timeline__date">04/2026</span>
-          <div class="timeline__body">
-            <h3><a href="https://github.com/oscar-leung/restroom-finder" target="_blank" rel="noopener">Restroom Finder</a></h3>
-            <p>React + Vite + Leaflet app on the Refuge Restrooms API — shipping a real user-facing product end to end.</p>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <span class="timeline__date">04/2026</span>
-          <div class="timeline__body">
-            <h3><a href="https://github.com/oscar-leung/qa-portfolio" target="_blank" rel="noopener">Selenium QA Suite</a></h3>
-            <p>SauceDemo E2E suite in Python + Selenium + pytest — the same fundamentals as 2021's framework, five years sharper.</p>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <span class="timeline__date">04/2026</span>
-          <div class="timeline__body">
-            <h3><a href="https://github.com/oscar-leung/verbose-octo-carnival" target="_blank" rel="noopener">Job Search Automation Suite</a></h3>
-            <p>Cloud-deployed Python/Selenium tooling processing 1,000+ listings per headless run with rate-limit-aware pacing and live Google Sheets dashboard sync.
-               Deployment scripts live in the companion repo,
-               <a href="https://github.com/oscar-leung/pythonanywhere-jobsearch" target="_blank" rel="noopener">pythonanywhere-jobsearch</a>.</p>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <span class="timeline__date">08/2026</span>
-          <div class="timeline__body">
-            <h3><a href="https://github.com/oscar-leung/playwright-qa-portfolio" target="_blank" rel="noopener">Playwright QA Portfolio</a> <span class="timeline__tag timeline__tag--hot">latest</span></h3>
-            <p>26-test Playwright/TypeScript suite — UI + API, session-reuse auth, a documented defect via test.fail(), GitHub Actions CI. The modern twin of the Selenium suite.</p>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -686,116 +573,6 @@
   </section>
 
   <!-- CONTACT -->
-  <!-- ============================================================
-       SIGNATURE ROTATOR
-       Three sign-off cards that alternate on a timer. Original
-       implementations, inspired by the CodePen "Email Signatures"
-       challenge collection — the 3D perspective card (Grant Jenkins),
-       the etch-a-sketch drawing toy (Gymnase), and the neo-brutalist
-       compose-window banner (Zerde Turdybek). No email address is
-       shown anywhere: the contact form is the only route in.
-       ============================================================ -->
-  <section class="section section--tight" id="signature">
-    <div class="container">
-      <div class="section__header fade-in">
-        <p class="section__eyebrow">Sign Off</p>
-        <h2 class="section__title">My Signature</h2>
-        <p class="section__sub">Three takes on the same card. It rotates on its own &mdash; or pick one.</p>
-      </div>
-
-      <div class="sig" id="sigRotator" role="group" aria-roledescription="carousel" aria-label="Email signature designs">
-        <div class="sig__stage">
-
-          <!-- ---------- 1. Perspective card ---------- -->
-          <div class="sig__slide is-active" data-sig="3d" aria-label="Perspective signature card" role="group" aria-roledescription="slide">
-            <div class="sig3d" id="sig3d">
-              <div class="sig3d__sheet" aria-hidden="true">
-                <span class="sig3d__dot"></span><span class="sig3d__dot"></span><span class="sig3d__dot"></span>
-                <div class="sig3d__lines"><i></i><i></i><i></i><i></i></div>
-              </div>
-              <div class="sig3d__card">
-                <div class="sig3d__avatar">OL</div>
-                <div class="sig3d__body">
-                  <h3 class="sig3d__name">Oscar Leung</h3>
-                  <p class="sig3d__role">Software Engineer &middot; QA Automation &middot; SDET</p>
-                  <ul class="sig3d__meta">
-                    <li><a href="https://www.linkedin.com/in/oscar-leung/" target="_blank" rel="noopener">linkedin.com/in/oscar-leung</a></li>
-                    <li><a href="https://github.com/oscar-leung" target="_blank" rel="noopener">github.com/oscar-leung</a></li>
-                    <li><a href="#contact">Davis / Sacramento &middot; Bay Area &middot; Remote</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ---------- 2. Etch-a-sketch ---------- -->
-          <div class="sig__slide" data-sig="sketch" aria-label="Etch-a-sketch signature" role="group" aria-roledescription="slide" inert>
-            <div class="sketch">
-              <div class="sketch__brand">MAGIC <b>Etch&nbsp;a&nbsp;Sketch</b> SCREEN</div>
-              <div class="sketch__screen">
-                <svg class="sketch__ink" viewBox="0 0 420 130" role="img" aria-label="Oscar Leung, handwritten">
-                  <text x="210" y="86" text-anchor="middle">Oscar Leung</text>
-                </svg>
-              </div>
-              <div class="sketch__knobs" aria-hidden="true"><span></span><span></span></div>
-              <div class="sketch__caption">
-                <b>Oscar Leung</b> &mdash; Software Engineer &middot; QA Automation
-                <span>
-                  <a href="https://www.linkedin.com/in/oscar-leung/" target="_blank" rel="noopener">LinkedIn</a> &middot;
-                  <a href="https://github.com/oscar-leung" target="_blank" rel="noopener">GitHub</a> &middot;
-                  <a href="#contact">Get in touch</a>
-                </span>
-              </div>
-              <button class="sketch__shake" type="button" id="sketchShake">Shake to redraw</button>
-            </div>
-          </div>
-
-          <!-- ---------- 3. Compose-window banner ---------- -->
-          <div class="sig__slide" data-sig="retro" aria-label="Compose window signature" role="group" aria-roledescription="slide" inert>
-            <div class="compose">
-              <header class="compose__bar">
-                <span>New Message</span>
-                <em aria-hidden="true">&minus; &#9633; &times;</em>
-              </header>
-              <div class="compose__field"><span class="compose__label">To</span><span>hiring@your-team.com</span></div>
-              <div class="compose__field"><span class="compose__label">Subject</span><span>Re: Software Engineer / SDET opening</span></div>
-              <div class="compose__note">Happy to walk through the Playwright suite whenever it&rsquo;s useful. &mdash; O.</div>
-
-              <div class="banner">
-                <div class="banner__top">QUALITY, BUILT IN</div>
-                <div class="banner__mid">
-                  <div class="banner__stickers" aria-hidden="true"><span>&#129514;</span><span>&#127760;</span><span>&#129302;</span></div>
-                  <div class="banner__id">
-                    <h3>OSCAR LEUNG</h3>
-                    <p class="banner__tag">SOFTWARE ENGINEER &middot; SDET</p>
-                  </div>
-                  <div class="banner__bar" aria-hidden="true"></div>
-                </div>
-                <div class="banner__bottom">
-                  <a href="https://www.linkedin.com/in/oscar-leung/" target="_blank" rel="noopener">in/oscar-leung</a>
-                  <a href="https://github.com/oscar-leung" target="_blank" rel="noopener">github.com/oscar-leung</a>
-                  <a href="#contact">Davis &middot; Bay Area &middot; Remote</a>
-                </div>
-              </div>
-
-              <footer class="compose__send">
-                <a href="#contact" class="compose__btn">Send &nbsp;&#9654;</a>
-                <span class="compose__icons" aria-hidden="true">&#128206; &#128247; &#128279;</span>
-              </footer>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="sig__controls">
-          <button class="sig__dot is-on" type="button" data-go="0" aria-label="Show perspective card"></button>
-          <button class="sig__dot" type="button" data-go="1" aria-label="Show etch-a-sketch card"></button>
-          <button class="sig__dot" type="button" data-go="2" aria-label="Show compose window card"></button>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section" id="contact">
     <div class="container">
       <div class="contact__wrap fade-in">
@@ -828,12 +605,13 @@
         </div>
 
         <div class="contact__right">
-          <!--
-            Formsubmit.co — no account needed, forwards to Gmail.
-            First submission sends Oscar a one-time activation email.
-            After activating, email is hidden and all future submissions
-            go straight to his inbox. Real address never exposed as a link.
-          -->
+          <p class="contact__fastest">
+            Fastest: <a href="mailto:oscarleung1@gmail.com"><strong>oscarleung1@gmail.com</strong></a>
+            &middot; or <a href="https://www.linkedin.com/in/oscar-leung/" target="_blank" rel="noopener">LinkedIn DM</a>
+            &mdash; I reply within 24 hours.
+          </p>
+          <!-- Formsubmit.co form kept as the structured route for recruiters
+               who prefer it; direct email above is the batch-processing path. -->
           <form
             class="contact-form"
             action="https://formsubmit.co/oscarleung1@gmail.com"
@@ -882,11 +660,11 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <p class="footer__copy">&copy; 2026 Oscar Leung &mdash; Software Engineer &amp; QA Automation</p>
+      <p class="footer__copy">&copy; 2026 Oscar Leung &mdash; QA Automation Engineer &amp; SDET</p>
       <nav class="footer__nav" aria-label="Footer navigation">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <span class="footer__divider">|</span>
         <a href="https://oscar-leung.netlify.app" target="_blank" rel="noopener" class="footer__alt">Portfolio v1 ↗</a>
