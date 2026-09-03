@@ -532,6 +532,21 @@ html.js .fade-in.visible { opacity: 1; transform: none; }
 }
 .social-link:hover { color: var(--accent); transform: translateX(3px); }
 
+/* "Fastest way to reach me" callout above the form — the email is the
+   primary contact route now, so it gets accent treatment and a card. */
+.contact__fastest {
+  font-size: .92rem; color: var(--text-muted); line-height: 1.65;
+  margin-bottom: 1rem;
+  padding: .85rem 1.1rem;
+  background: var(--accent-lo);
+  border: 1px solid var(--border-lit);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r-sm);
+}
+.contact__fastest a { color: var(--accent); }
+.contact__fastest a:hover { text-decoration: underline; }
+.contact__fastest strong { color: var(--accent-hi); font-weight: 600; word-break: break-all; }
+
 /* Form */
 .contact-form {
   display: flex; flex-direction: column; gap: 1rem;
