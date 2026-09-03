@@ -8,12 +8,12 @@ const PREFERS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').ma
 const POINTER_FINE    = window.matchMedia('(pointer: fine)').matches;
 
 // ===== TYPING EFFECT =====
+// roles[0] matters most: reduced-motion users see it statically.
 const roles = [
-  'Software Engineer',
   'QA Automation Engineer',
   'SDET',
   'Software Engineer in Test',
-  'Python Developer',
+  'Software Engineer',
 ];
 
 let roleIndex = 0;
@@ -275,7 +275,20 @@ document.querySelectorAll('.nav__link.contact-cta, .hero__ctas .btn--primary').f
     spawnConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2, 40);
   });
 });
-document.querySelector('.contact-form')?.addEventListener('submit', () => {
+// On submit: confetti, plus a loading state — the Formsubmit redirect can
+// take seconds and an idle-looking button invites a double submit.
+document.querySelector('.contact-form')?.addEventListener('submit', (e) => {
+  const form = e.currentTarget;
+  if (form.dataset.submitting) { e.preventDefault(); return; }
+  form.dataset.submitting = 'true';
+  const btn = form.querySelector('button[type="submit"]');
+  if (btn) {
+    btn.setAttribute('aria-disabled', 'true'); // not disabled: that would strip it from the POST-in-flight tab order announcement
+    btn.setAttribute('aria-busy', 'true');
+    btn.style.opacity = '.7';
+    btn.style.pointerEvents = 'none';
+    btn.textContent = 'Sending…';
+  }
   spawnConfetti(window.innerWidth / 2, window.innerHeight / 2, 70);
 });
 
@@ -303,7 +316,15 @@ const themes = [
   { name: 'forest', icon: '🌿', cls: 'theme-forest' },
   { name: 'neon',   icon: '💜', cls: 'theme-neon' },
 ];
-let themeIdx = parseInt(localStorage.getItem('vibeIdx') || '0', 10) || 0;
+// localStorage throws (SecurityError) when storage is blocked — Safari
+// "Block all cookies", some private/embedded contexts. Guard every touch,
+// or everything below this line silently dies with it.
+const safeStorage = {
+  get(key) { try { return localStorage.getItem(key); } catch { return null; } },
+  set(key, val) { try { localStorage.setItem(key, val); } catch { /* no-op */ } },
+};
+let themeIdx = parseInt(safeStorage.get('vibeIdx') || '0', 10) || 0;
+if (themeIdx < 0 || themeIdx > 3) themeIdx = 0; // stale/garbage stored index
 const vibeBtn = document.getElementById('vibeSwitcher');
 function applyTheme(idx) {
   themes.forEach(t => t.cls && document.documentElement.classList.remove(t.cls));
@@ -313,7 +334,7 @@ function applyTheme(idx) {
 applyTheme(themeIdx);
 vibeBtn?.addEventListener('click', () => {
   themeIdx = (themeIdx + 1) % themes.length;
-  localStorage.setItem('vibeIdx', themeIdx);
+  safeStorage.set('vibeIdx', themeIdx);
   applyTheme(themeIdx);
   showToast(`Vibe: ${themes[themeIdx].name}`);
 });
