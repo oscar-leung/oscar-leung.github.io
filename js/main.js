@@ -2,8 +2,7 @@
    under html.js, so if this file dies the page still renders its content. */
 document.documentElement.classList.add('js');
 
-/* One shared motion flag. The cursor and signature blocks already honoured
-   this; the older code at the top of the file did not. */
+/* One shared motion flag. */
 const PREFERS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const POINTER_FINE    = window.matchMedia('(pointer: fine)').matches;
 
@@ -47,7 +46,16 @@ function type() {
   setTimeout(type, delay);
 }
 
-type();
+// First paint shows the complete first role instantly (recruiter feedback:
+// no "QA A|" flash); the delete/retype loop only starts after a 2s read.
+if (typedEl) {
+  typedEl.textContent = roles[0];
+  if (!PREFERS_REDUCED) {
+    charIndex = roles[0].length;
+    isDeleting = true;
+    setTimeout(type, 2000);
+  }
+}
 
 // ===== NAV SCROLL =====
 const nav = document.getElementById('nav');
@@ -129,7 +137,7 @@ fadeEls.forEach(el => fadeObserver.observe(el));
 // ===== SPOTLIGHT HOVER ON CARDS =====
 // Tracks mouse and exposes --mx / --my CSS vars; cards use them in their
 // background-image radial-gradient for a cursor-following glow.
-const spotSelectors = '.skill-card, .project-card, .timeline__content, .beyond-card, .stat-card, .video-card';
+const spotSelectors = '.skill-card, .project-card, .timeline__content, .beyond-card, .stat-card';
 if (POINTER_FINE) {
   document.querySelectorAll(spotSelectors).forEach(card => {
     let frame = null;
@@ -167,7 +175,9 @@ let gIdx = 0;
 if (greetEl) {
   greetEl.lang = greetings[0].l;
   if (!PREFERS_REDUCED) {
-    setInterval(() => {
+    // Hold English for ~8s so a stranger's first paint is never mid-cycle
+    // Cantonese/Japanese (recruiter feedback #11), then rotate as before.
+    setTimeout(() => setInterval(() => {
       greetEl.style.opacity = '0';
       setTimeout(() => {
         gIdx = (gIdx + 1) % greetings.length;
@@ -175,7 +185,7 @@ if (greetEl) {
         greetEl.lang = greetings[gIdx].l;
         greetEl.style.opacity = '1';
       }, 350);
-    }, 3500);
+    }, 3500), 8000);
   }
 }
 
@@ -272,14 +282,8 @@ function spawnConfetti(x, y, count = 50) {
     setTimeout(() => c.remove(), 2400);
   }
 }
-// Trigger on Hire Me CTAs and on form submit
-document.querySelectorAll('.nav__link.contact-cta, .hero__ctas .btn--primary').forEach(el => {
-  el.addEventListener('click', () => {
-    const rect = el.getBoundingClientRect();
-    spawnConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2, 40);
-  });
-});
-// On submit: confetti, plus a loading state — the Formsubmit redirect can
+// Confetti fires only inside Konami party mode — the one opt-in easter egg.
+// On submit: a loading state — the Formsubmit redirect can
 // take seconds and an idle-looking button invites a double submit.
 document.querySelector('.contact-form')?.addEventListener('submit', (e) => {
   const form = e.currentTarget;
@@ -293,7 +297,6 @@ document.querySelector('.contact-form')?.addEventListener('submit', (e) => {
     btn.style.pointerEvents = 'none';
     btn.textContent = 'Sending…';
   }
-  spawnConfetti(window.innerWidth / 2, window.innerHeight / 2, 70);
 });
 
 // ===== TOAST HELPER =====
@@ -394,23 +397,6 @@ document.querySelectorAll('.beyond-card[data-easter]').forEach(card => {
   });
 });
 
-// ===== YOUTUBE FACADES =====
-// The three embeds cost ~500KB+ each before anyone presses play. The cards
-// ship a thumbnail-only <button>; the real player is built on demand.
-document.querySelectorAll('.video-facade').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const id = btn.dataset.videoId;
-    if (!id) return;
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1`;
-    iframe.title = btn.dataset.videoTitle || 'YouTube video';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    btn.replaceWith(iframe);
-    iframe.focus();
-  });
-});
-
 // ===== CONSOLE MESSAGE =====
 console.log(
   '%c👋 Hey there, fellow dev!\n' +
@@ -422,143 +408,3 @@ console.log(
   'color:#94a3b8;font-family:monospace;font-size:11px;',
   'color:#f472b6;font-size:11px;font-style:italic;'
 );
-
-/* ---------------------------------------------------------------
-   Playful rotating cursor — cycles through emoji for Oscar's
-   hobbies and past jobs (frisbee, volleyball, satellites, testing,
-   AI, teaching). Skipped for users who prefer reduced motion, and
-   reverts to normal over links/buttons so nothing gets harder to click.
-   --------------------------------------------------------------- */
-(function () {
-  if (PREFERS_REDUCED) return;
-  if (!POINTER_FINE) return; // touch devices have no cursor
-
-  var emojis = ['🥏', '🏐', '🛰️', '🧪', '🤖', '✏️', '🎮'];
-  var i = 0;
-
-  function emojiCursor(e) {
-    var svg =
-      '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">' +
-      '<text y="21" font-size="20">' + e + '</text></svg>';
-    return 'url(data:image/svg+xml;utf8,' + encodeURIComponent(svg) + ') 4 4, auto';
-  }
-
-  function rotate() {
-    document.body.style.cursor = emojiCursor(emojis[i]);
-    i = (i + 1) % emojis.length;
-  }
-
-  rotate();
-  setInterval(rotate, 2800);
-
-  // Keep pointer affordance on interactive elements
-  var style = document.createElement('style');
-  style.textContent = 'a, button, [role="button"], select { cursor: pointer !important; }' +
-      ' input:not([type="submit"]):not([type="button"]), textarea { cursor: text !important; }';
-  document.head.appendChild(style);
-})();
-
-/* ---------------------------------------------------------------
-   SIGNATURE ROTATOR
-   Alternates three sign-off cards on a timer. Pauses while the
-   visitor is hovering, focused inside, or has the tab in the
-   background, so a card never swaps out mid-read. Dots jump
-   directly and stop the auto-advance — an explicit choice wins.
-   --------------------------------------------------------------- */
-(function () {
-  const root = document.getElementById('sigRotator');
-  if (!root) return;
-
-  const slides = Array.from(root.querySelectorAll('.sig__slide'));
-  const dots   = Array.from(root.querySelectorAll('.sig__dot'));
-  if (slides.length < 2) return;
-
-  slides.forEach((sl, i) => { sl.inert = i !== 0; });
-
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const DWELL   = 7000;
-  let idx = 0, timer = null, paused = false, userPicked = false;
-
-  // Slides are stacked in one grid cell and hidden with `visibility`, not
-  // `hidden`/`display`, so swapping needs no reflow wait — the whole thing is
-  // synchronous. `inert` keeps the offscreen cards out of the tab order
-  // without touching layout.
-  function show(next) {
-    if (next === idx) return;
-    const from = slides[idx];
-    const to   = slides[next];
-
-    from.classList.remove('is-active');
-    from.inert = true;
-    to.classList.add('is-active');
-    to.inert = false;
-
-    dots[idx]?.classList.remove('is-on');
-    dots[next]?.classList.add('is-on');
-    idx = next;
-  }
-
-  function advance() {
-    if (paused || document.hidden) return;
-    show((idx + 1) % slides.length);
-  }
-
-  function start() {
-    stop();
-    if (reduced || userPicked) return;
-    timer = setInterval(advance, DWELL);
-  }
-  function stop() { clearInterval(timer); timer = null; }
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      userPicked = true;   // visitor is steering now — stop rotating
-      stop();
-      show(i);
-    });
-  });
-
-  root.addEventListener('mouseenter', () => { paused = true; });
-  root.addEventListener('mouseleave', () => { paused = false; });
-  root.addEventListener('focusin',    () => { paused = true; });
-  root.addEventListener('focusout',   () => { paused = false; });
-  document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
-
-  start();
-
-  /* --- Perspective card: tilt toward the pointer --- */
-  const card = document.getElementById('sig3d');
-  if (card && !reduced && !window.matchMedia('(pointer: coarse)').matches) {
-    const REST_X = 8, REST_Y = -14;
-    card.parentElement.addEventListener('mousemove', (e) => {
-      const b = card.getBoundingClientRect();
-      const px = (e.clientX - b.left) / b.width  - .5;
-      const py = (e.clientY - b.top)  / b.height - .5;
-      card.style.setProperty('--rx', (REST_X - py * 16).toFixed(2) + 'deg');
-      card.style.setProperty('--ry', (REST_Y + px * 20).toFixed(2) + 'deg');
-    });
-    card.parentElement.addEventListener('mouseleave', () => {
-      card.style.setProperty('--rx', REST_X + 'deg');
-      card.style.setProperty('--ry', REST_Y + 'deg');
-    });
-  }
-
-  /* --- Etch-a-sketch: shake to redraw the signature --- */
-  const shake = document.getElementById('sketchShake');
-  if (shake) {
-    shake.addEventListener('click', () => {
-      const pad = shake.closest('.sketch');
-      if (!pad || pad.classList.contains('is-shaking')) return;
-      pad.classList.add('is-shaking');
-      // Restart the stroke animation: clear it, force a synchronous reflow,
-      // then hand it back. Doing this without requestAnimationFrame matters —
-      // rAF is frozen in a backgrounded tab, which would strand the signature
-      // mid-reset with no stroke drawn at all.
-      const ink = pad.querySelectorAll('.sketch__ink text');
-      ink.forEach(t => { t.style.animation = 'none'; });
-      void pad.offsetWidth;
-      ink.forEach(t => { t.style.animation = ''; });
-      setTimeout(() => pad.classList.remove('is-shaking'), 460);
-    });
-  }
-})();
