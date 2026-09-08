@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://oscar-leung.github.io/sitemap.xml
+Sitemap: https://oscar-leung.github.io/restroom-finder/sitemap.xml
